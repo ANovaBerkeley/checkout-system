@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/superyuki2/Desktop/cs61b/cs61b-software/lib/ucb.jar"/>
+	<classpathentry kind="lib" path="/Users/superyuki2/Desktop/cs61b/cs61b-software/lib/junit-4.11.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

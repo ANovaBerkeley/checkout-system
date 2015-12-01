@@ -1,0 +1,70 @@
+DB61B System.  Version 3.0
+> Loaded students.db
+> Loaded enrolled.db
+> Loaded schedule.db
+> Loaded mydatabase.db
+Search results:
+  102  B+
+  105  A-
+  103  B+
+  106  A-
+  104  B+
+  105  B+
+  106  B+
+  101  B
+  102  B
+  101  A
+  101  A-
+  102  A-
+  103  A-
+  101  B+
+  104  A-
+  103  B
+  102  A
+  104  B
+  103  A
+  105  B
+  104  A
+  106  B
+  105  A
+  106  A
+> > > Contents of enrolled2
+  101
+  102
+  103
+  104
+  105
+  106
+> > 
+Search results:
+  Sigmas  CS
+  Chipmunk  CS
+  Zumba  CS
+  Sensei  NotCS
+  Viola  NotCS
+  Me  NotCS
+  Sloth  CS
+> > 
+Search results:
+  Sigmas  CS
+  Chipmunk  CS
+  Zumba  CS
+  Sloth  CS
+> > 
+Search results:
+  Chipmunk
+  Me
+> > 
+Search results:
+  Sensei  NotCS
+  Viola  NotCS
+  Me  NotCS
+> > 
+Search results:
+  Sigmas  CS  Cat
+  Sensei  NotCS  Dolphin
+  Zumba  CS  Sean
+  Me  NotCS  Giraffe
+  Sloth  CS  Panda
+  Viola  NotCS  Koala
+  Chipmunk  CS  Dog

@@ -1,0 +1,19 @@
+load students;
+load enrolled;
+load schedule;
+load mydatabase;
+/* SID of students and the Grade of enrolled students. */
+select students.SID, Grade from enrolled, students;
+/* new table enrolled2. */
+create table enrolled2 as select SID from enrolled;
+print enrolled2;
+/* Name and Major from mydatabase. */
+select Name, Major from mydatabase;
+/* Major is CS? */
+select Name, Major from mydatabase where Major = 'CS';
+/* Name is alphabetically before P. */
+select Name from mydatabase where Name < 'P';
+/* Name is alphabetically after G and Major is not CS. */
+select Name, Major from mydatabase where Name > 'G' and Major = 'NotCS';
+/* Select 3 columns from mydatabase. */ 
+select Name, Major, Animal from mydatabase;

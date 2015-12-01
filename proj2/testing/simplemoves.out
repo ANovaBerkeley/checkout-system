@@ -1,0 +1,45 @@
+Program #1:
+===
+    - b b b b b b -
+    w - - - - - - w
+    w - - - - - - w
+    w - - - - - - w
+    w - - - - - - w
+    w - - - - - - w
+    w - - - - - - w
+    - b b b b b b -
+Next move: black
+===
+===
+    - b b b b b b -
+    w - - - - - - w
+    w - - - - - - w
+    w - - - - - - w
+    w - - - - - - w
+    w - - b - - - w
+    w - - - - - - w
+    - - b b b b b -
+Next move: white
+===
+===
+    - b b b b b b -
+    w - - - - - - w
+    w - - - - - - w
+    w - - - - - - w
+    w - - - - - - w
+    - - - w - - - w
+    w - - - - - - w
+    - - b b b b b -
+Next move: black
+===
+===
+    - b b b b b b -
+    w - - - - - - w
+    w - - - - - - w
+    w - - - - - - w
+    w - - - - - - w
+    - - - w - - - w
+    w - - - - - - w
+    b - b b b - b -
+Next move: white
+===

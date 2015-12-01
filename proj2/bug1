@@ -1,0 +1,77 @@
+ai-v-staff: OK
+ai-v-staff1: OK
+ai-v-staff2: OK
+ai2: OK
+full-game1: OK
+full-game2: FAIL (Program 1: received local move for wrong player: B::g1-g3)
+test-loa input file:
+===================================
+# Same as full-game1.inp, but with both players as AIs.
+java -ea loa.Main
+None
+===#1===
+seed 329283
+manual white
+start
+d8-d6
+a3-c3
+d1-f3
+a6-c8
+f8-f5
+a2-c2
+f1-a1
+a5-b6
+c1-e3
+h6-e6
+e1-c3
+h5-f3
+b8-e5
+h4-f4
+e5-e1
+h2-f2
+b1-f1
+c2-a2
+f5-h7
+f4-d6
+e3-d2
+e6-h6
+f1-h3
+b6-b5
+h3-f5
+a2-c4
+d2-f4
+b5-d5
+f4-f8
+f3-g4
+g8-d5
+d6-c7
+f8-h6
+a4-c6
+e1-h1
+f2-c5
+h7-g8
+g4-e4
+e8-c6
+e4-e5
+c6-f3
+a7-d4
+c3-b4
+c8-b7
+a1-d4
+c7-b6
+g1-c5
+c4-d3
+f5-d3
+e5-d6
+h1-g1
+auto black
+auto white
+start
+%mw
+%ew
+
+So I am not sure why this test if failing: in the Piazza posts, it said that this full-game2
+test tests whether the ai can finish the game off, and I do have a bit of code in my eval method
+in Machine Player that will assign a max value for a move that will end the game. So, I am not 
+sure what the bug is here. Or, is there another possible reason why this test is not passing?
+Thank you very much! 

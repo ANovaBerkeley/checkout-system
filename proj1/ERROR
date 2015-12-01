@@ -1,0 +1,24 @@
+> load students;
+Loaded students.db
+> select SID from students; 
+Selected results:
+  SID 
+
+> select SID, Major from students;
+Selected results:
+  SID Major 
+
+> select SID from students where SID = '101';
+Selected results:
+  SID 
+
+> 
+
+Whenever I write a select statement with or without any conditions, the 
+column names become printed. First of all, since column names are not supposed 
+to be printed, does that mean that this is technically a row that is being 
+printed? And second, I am making the tables into tableiterators in selectclause,
+and I am iterating through the tableiterator in the actual select method, 
+checking against the conditions and whether each row passes the conditions 
+or not. I think the logic is there, but I can not seem to locate the bug 
+in the code... Thank you so much for the help! 

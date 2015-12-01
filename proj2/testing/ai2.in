@@ -1,0 +1,10 @@
+# Have the program play against itself.  Make sure somebody wins.
+java -ea loa.Main 
+None
+===#1===
+auto Black
+auto White
+seed 12347
+start
+%bw
+%e
