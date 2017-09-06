@@ -1,0 +1,17 @@
+# My integration tests.
+java -ea loa.Main
+None
+===#1===
+manual white
+start
+dump
+b1-b3
+dump
+a5-c5
+dump
+c8-c5
+dump
+h6-f8
+dump 
+c1-c3
+quit

@@ -1,0 +1,19 @@
+Commands: Commands are whitespace-delimited.  Other trailing text on a line
+          is ignored. Comment lines begin with # and are ignored.
+
+  b
+  board     Display the board, showing row and column designations.
+  autoprint Toggle mode in which the board is printed (as for b) after each
+            AI move.
+  start     Start playing from the current position.
+  uv-xy     A move from square uv to square xy.  Here u and v are column
+            designations (a-h) and v and y are row designations (1-8): 
+  clear     Stop game and return to initial position.
+  seed N    Seed the random number with integer N.
+  auto P    P is white or black; makes P into an AI. Stops game.
+  manual P  P is white or black; takes moves for P from terminal. Stops game.
+  set cr P  Put P ('w', 'b', or empty) into square cr. Stops game.
+  dump      Display the board in standard format.
+  quit      End program.
+  help
+  ?         This text.

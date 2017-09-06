@@ -1,0 +1,54 @@
+This directory contains a skeleton for CS61B Project 2.
+
+Although some of what's in here might seem mysterious to you, try to 
+understand what it's all for.  Don't be afraid to ask us about it.
+The skeleton files are YOURS TO CHANGE AS YOU DESIRE OR THROW AWAY
+ENTIRELY!!!
+
+CONTENTS:
+
+ReadMe			This file.
+	
+Makefile		A makefile (for gmake) that will compile your
+			files and run tests.  You must turn in a Makefile,
+			'gmake ' must compile all your files, and 
+			'gmake check' must perform all your tests.  
+			Currently, this makefile is set up to do just 
+			that with our skeleton files.  Be sure to keep 
+			it up to date.
+
+loa/			Directory containing the Lines of Action package.
+
+    Makefile		A convenience Makefile so that you can issue 
+			compilation commands from the game directory.
+
+    Piece.java	 	An enumerated type describing the kinds of pieces.
+
+    Move.java		Represents a single move.
+
+    Direction.java      Represents a direction (north, south, etc.) on a
+                        board.
+
+    Board.java	        Represents a game board.  Contains much of the
+			machinery for checking or generating possible moves.
+
+    HumanPlayer.java	A kind of Player that reads moves from the standard
+                        input (i.e., presumably from a human player).
+
+    MachinePlayer.java  A kind of Player that chooses its moves automatically.
+
+    Reporter.java       A utility class for handling debugging output.
+
+    UnitTest.java       Class that performs unit testing of the loa package.
+
+
+
+testing/
+
+    Makefile            Directions for testing.
+
+    *.in	        Test cases.  Each one is input to a testing script
+                        test-loa.
+
+    *.out		Correct output from some test cases, containing
+    			dumps of the board and win messages.
