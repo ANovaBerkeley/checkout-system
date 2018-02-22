@@ -21,6 +21,11 @@ class MembersController < ApplicationController
     end
   end
 
+  def import
+    Member.import(params[:file])
+    redirect_to :root, notice: 'Members successfully created from CSV.'
+  end
+
   def update
     if @member.update(member_params)
       redirect_to :root, notice: 'Member was successfully updated.'
