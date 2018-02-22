@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :members do
     collection { post :import }
+    collection { post :delete_all }
   end
   resources :users
   resources :items do

@@ -48,6 +48,11 @@ class MembersController < ApplicationController
     end
   end
 
+  def delete_all
+    Member.delete_all
+    redirect_to :root, notice: 'Members successfully destroyed.'
+  end
+
   private
     def set_member
       @member = Member.find(params[:id])
