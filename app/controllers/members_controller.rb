@@ -22,8 +22,12 @@ class MembersController < ApplicationController
   end
 
   def import
-    Member.import(params[:file])
-    redirect_to :root, notice: 'Members successfully created from CSV.'
+    begin
+      Member.import(params[:file])
+      redirect_to :root, notice: 'Members successfully created from CSV.'
+    rescue
+      redirect_to :root, notice: 'Invalid CSV format.'
+    end
   end
 
   def update
