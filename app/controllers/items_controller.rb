@@ -22,6 +22,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def import
+    begin
+      Item.import(params[:file])
+      redirect_to :root, notice: 'Items successfully created from CSV.'
+    rescue
+      redirect_to :root, notice: 'Invalid CSV format.'
+    end
+  end
+
   def update
     if @item.update(item_params)
       redirect_to :root, notice: 'Item was successfully updated.'

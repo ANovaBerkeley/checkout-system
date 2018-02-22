@@ -4,4 +4,12 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :category, presence: true
+
+  require 'csv'
+
+  def self.import(file)
+  	CSV.foreach(file.path, headers:true) do |row|
+  		Item.create! row.to_hash
+  	end
+  end
 end

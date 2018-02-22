@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     collection { post :import }
   end
   resources :users
-  resources :items
+  resources :items do
+    collection { post :import }
+  end
 
   root 'orders#index'
   get 'renew/:id' => 'orders#renew'
