@@ -1,4 +1,4 @@
-# Inventorious
+# ANova Checkout System
 
 An inventory management and tracking system built with Ruby on Rails 5.
 
@@ -13,16 +13,16 @@ Users (who have access to the app), can specify items, members (who can borrow i
 There are two ways to add members and items: individually and in bulk with a CSV. If you are uploading a CSV file, it has to follow the format specified here (including capitalization):
 
 #### Members CSV Columns
-* name: student name
-* email: student email
-* phone: student phone number
+* `name`: student name
+* `email`: student email
+* `phone`: student phone number
 
 #### Items CSV Columns
-* name: item name
-* category: either "Laptop" or "Other"
-* quantity: usually 1
-* remaining_quantity: should be equal to quantity
-* description: item description
+* `name`: item name
+* `category`: either "Laptop" or "Other"
+* `quantity`: usually 1
+* `remaining_quantity`: should be equal to quantity
+* `description`: item description
 
 ## Installation Instructions
 
