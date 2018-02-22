@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :orders
-  resources :members
+  resources :members do
+    collection { post :import }
+  end
   resources :users
   resources :items
 
