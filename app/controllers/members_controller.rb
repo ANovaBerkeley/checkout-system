@@ -21,6 +21,15 @@ class MembersController < ApplicationController
     end
   end
 
+  def import
+    begin
+      Member.import(params[:file])
+      redirect_to :root, notice: 'Members successfully created from CSV.'
+    rescue
+      redirect_to :root, notice: 'Invalid CSV format.'
+    end
+  end
+
   def update
     if @member.update(member_params)
       redirect_to :root, notice: 'Member was successfully updated.'
@@ -37,6 +46,11 @@ class MembersController < ApplicationController
       flash[:alert] = 'Members with active orders can not be deleted. Mark his/hers open orders as returned and try again.'
       redirect_to root_url
     end
+  end
+
+  def delete_all
+    Member.delete_all
+    redirect_to :root, notice: 'Members successfully destroyed.'
   end
 
   private

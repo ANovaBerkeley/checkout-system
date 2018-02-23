@@ -178,6 +178,15 @@
                   <% end %>
                 </table>
               </div>
+              <% if @members.count > 0 %>
+                <div class="box-footer">
+                  Delete All
+                  <%= link_to delete_all_members_path, method: :post, data: { confirm: 'Are you sure?' } do %>
+                    <i class="ion ion-trash-b"></i>
+                  <% end %>
+                </div>
+              <% end %>
+              
             </div>
             <!-- /.box -->
           </div>

@@ -73,6 +73,38 @@
         <!-- /.row -->
       </section>
       <!-- /.content -->
+
+      <section class="content">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="box box-header">
+              <div class="box-header with-border">
+                <h3 class="box-title">Import CSV</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+                <div class="box-body">
+                 <div class="form-group">
+                    <label>Select File</label>
+                    <%= form_tag(import_items_path, multipart:true) do %>
+                      <%= file_field_tag :file, class: "form-control" %>
+                      <div class="box-footer">
+                        <%= submit_tag "Submit", class: "btn btn-primary" %>
+                      </div>
+                    <% end %>
+                  </div>
+                <!-- /.box-body -->
+                </div>
+            <!-- /.box -->
+            </div>
+          <!--/.col (right) -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
