@@ -47,6 +47,21 @@ class OrdersController < ApplicationController
     @member = Member.all
   end
 
+  def new_qr_item
+    @order = Order.new
+    @member = Member.all
+    render :new_qr_item
+  end
+
+  def new_qr_member
+    render :new_qr_member
+  end
+
+  def create_qr_order
+    flash[:alert] = 'qr'
+    redirect_to :root
+  end
+
   def create
     if Item.find_by_id(params[:order][:item_id]).remaining_quantity >= params[:order][:quantity].to_i
       params[:order][:status] = true
