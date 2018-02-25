@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'past_orders' => 'orders#old'
 
   get 'new_qr' => 'orders#new_qr_item'
-  get 'new_qr_member' => 'orders#new_qr_member'
-  get 'qr_order' => 'orders#create_qr_order'
+  post 'new_qr_member' => 'orders#new_qr_member'
+  post 'qr_order' => 'orders#create_qr_order'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

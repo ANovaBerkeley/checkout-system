@@ -26,10 +26,11 @@
               <div class="box-body">
                  <div class="form-group">
                     <label>Select File</label>
-                    <%= form_tag(import_items_path, multipart:true) do %>
+                    <%= form_tag(new_qr_member_path, multipart:true) do %>
                       <%= file_field_tag :file, class: "form-control" %>
                       <div class="box-footer">
-                        <%= link_to "Submit", new_qr_member_path, class: "btn btn-primary" %>
+                        <!-- <%= link_to "Submit", new_qr_member_path, class: "btn btn-primary" %> -->
+                        <%= submit_tag "Submit", class: "btn btn-primary" %>
                       </div>
                     <% end %>
                   </div>
