@@ -115,6 +115,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def get_members 
+    Member.all.map do |member| [member_id, member] 
+    end
+  end
+
   def destroy
     borrowed_qty = @order.quantity.to_i
     @borrowed_item = @order.item

@@ -47,7 +47,8 @@
                   </div>
                   <div class="form-group">
                     <label>Member</label>
-                    <%= f.select(:member_id, options_from_collection_for_select(@member, 'id', 'name'), { include_blank: true }, { class: 'form-control dropdown', required: true }) %>
+                    <br>
+                    <%= f.select(:member_id, get_members, { include_blank: true }, { class: 'dropdown', required: true }) %>
                   </div>
                   <%= f.number_field :item_id, :value => params[:item], :hidden => true %>
                 </div>
@@ -74,6 +75,7 @@
         $.widget.bridge('uibutton', $.ui.button);
         $('.datepicker').datepicker({format: 'yyyy/mm/dd'});
         $('.dropdown').select2();
+        $('#order_member_id').hide();
       });
     </script>
   </div>
