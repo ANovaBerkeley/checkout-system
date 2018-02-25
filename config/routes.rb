@@ -15,8 +15,7 @@ Rails.application.routes.draw do
   get 'return/:id' => 'orders#disable'
   get 'past_orders' => 'orders#old'
 
-  get 'new_qr' => 'orders#new_qr_item'
-  post 'new_qr_member' => 'orders#new_qr_member'
+  get 'new_qr' => 'orders#new_qr'
   post 'qr_order' => 'orders#create_qr_order'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
