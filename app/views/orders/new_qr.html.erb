@@ -20,15 +20,16 @@
             <!-- general form elements -->
             <div class="box box-header">
               <div class="box-header with-border">
-                <h3 class="box-title">Scan Member</h3>
+                <h3 class="box-title">Scan Item</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
                  <div class="form-group">
-                    <label>Select File</label>
+                    <label>Scan Item</label>
                     <%= form_tag(qr_order_path, multipart:true) do %>
-                      <%= file_field_tag :file, class: "form-control" %>
-                      <%= hidden_field_tag :item_id, @item, class: "form-control" %>
+                      <%= file_field_tag :file_item, class: "form-control" %>
+                      <label>Scan Member</label>
+                      <%= file_field_tag :file_member, class: "form-control" %>
                       <div class="box-footer">
                         <%= submit_tag "Submit", class: "btn btn-primary" %>
                       </div>

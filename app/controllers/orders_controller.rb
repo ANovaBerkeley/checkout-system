@@ -50,29 +50,26 @@ class OrdersController < ApplicationController
     @member = Member.all
   end
 
-  def new_qr_item
-    render :new_qr_item
-  end
-
-  def new_qr_member
-    puts 'hello'
-    puts Qrio::Qr.load(params[:file].path).qr.text
-    @item = 8
-    render :new_qr_member
+  def new_qr
+    render :new_qr
   end
 
   def create_qr_order
     puts 'hhello'
-    puts Qrio::Qr.load(params[:file].path).qr.text
-    puts params[:item_id]
+    puts Qrio::Qr.load(params[:file_item].path).qr.text
+    puts Qrio::Qr.load(params[:file_member].path).qr.text
+
+    ### Use decoded information to find item and member id
+    item_id = 10
+    member_id = 26
 
     params[:order] = Hash.new
-    params[:order][:item_id] = params[:item_id]
+    params[:order][:item_id] = item_id
     params[:order][:quantity] = 1
-    params[:order][:member_id] = 26
+    params[:order][:member_id] = member_id
     params[:order][:expire_at] = DateTime.new(2018,3,21)
     
-    if Item.find_by_id(params[:item_id]).remaining_quantity >= params[:order][:quantity].to_i
+    if Item.find_by_id(item_id).remaining_quantity >= params[:order][:quantity].to_i
       params[:order][:status] = true
       @order = Order.new(order_params)
       if @order.save
