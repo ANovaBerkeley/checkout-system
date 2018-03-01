@@ -50,6 +50,19 @@ class OrdersController < ApplicationController
     @member = Member.all
   end
 
+  def scan_barcode_item
+    render :scan_barcode
+  end
+
+  def scan_barcode_member
+    item_upc = params[:upc]
+    render :scan_barcode
+  end
+
+  def create_barcode_order
+
+  end
+
   def new_qr_item
     render :new_qr_item
   end

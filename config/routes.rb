@@ -18,5 +18,7 @@ Rails.application.routes.draw do
   get 'new_qr' => 'orders#new_qr_item'
   post 'new_qr_member' => 'orders#new_qr_member'
   post 'qr_order' => 'orders#create_qr_order'
+
+  get 'scan' => 'orders#scan_barcode_item'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

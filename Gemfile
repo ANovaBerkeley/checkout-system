@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'rqrcode'
 gem 'qrio'
 gem 'select2-rails'
+gem 'turbolinks', '~> 5.x'
 
 group :development, :test do
   gem 'byebug', platform: :mri
