@@ -40,7 +40,6 @@ function load_quagga(){
       Quagga.onDetected(function(result) {
         console.log('hello');
         var item = document.getElementById('testtest').innerHTML;
-        console.log(item);
         var last_code = result.codeResult.code;
         last_result.push(last_code);
         if (last_result.length > 20) {
@@ -48,14 +47,12 @@ function load_quagga(){
           last_result = [];
           Quagga.stop();
           if (item == -1) {
-            console.log('first one');
             $.ajax({
               type: "POST",
               url: '/orders/scan_member',
               data: { upc: code, item_id:  item}
             });
           } else {
-            console.log('second one');
             $.ajax({
               type: "POST",
               url: '/barcode_order',

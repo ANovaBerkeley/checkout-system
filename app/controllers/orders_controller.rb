@@ -57,6 +57,8 @@ class OrdersController < ApplicationController
   def scan_member
     # TODO: figure out why page cuts off when navigating from sidebar
     @item = params[:upc]
+    puts 'hello'
+    puts @item
     # TODO: figure out how to get item id from barcode
     item_id = Item.first.id
     redirect_to item_path(:id => item_id)

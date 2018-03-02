@@ -11,8 +11,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.first
-    # Following line should find correct item by id
-    # @item = params[:id]
+    # TODO: Following line should find correct item by id
+    # @item = Item.find(params[:id])
   end
 
   def edit
