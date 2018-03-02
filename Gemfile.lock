@@ -41,6 +41,7 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (6.6.1)
       execjs
+    barby (0.6.5)
     bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -191,6 +192,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  barby
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.2)

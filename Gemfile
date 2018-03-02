@@ -21,6 +21,7 @@ gem 'rqrcode'
 gem 'qrio'
 gem 'select2-rails'
 gem 'turbolinks', '~> 5.x'
+gem 'barby', require: %w(barby barby/barcode/code_128 barby/outputter/png_outputter)
 
 group :development, :test do
   gem 'byebug', platform: :mri

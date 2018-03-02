@@ -9,6 +9,12 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def show
+    puts 'what'
+    puts params[:id]
+    @item = params[:id]
+  end
+
   def edit
   end
 

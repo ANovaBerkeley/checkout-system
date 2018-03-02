@@ -39,6 +39,8 @@ function load_quagga(){
     if (Quagga.initialized == undefined) {
       Quagga.onDetected(function(result) {
         console.log('hello');
+        var item = document.getElementById('testtest').innerHTML;
+        console.log(item);
         var last_code = result.codeResult.code;
         last_result.push(last_code);
         if (last_result.length > 20) {
@@ -46,9 +48,9 @@ function load_quagga(){
           last_result = [];
           Quagga.stop();
           $.ajax({
-            type: "POST",
-            url: '/products/get_barcode',
-            data: { upc: code }
+            type: "GET",
+            url: '/scan_member',
+            data: { upc: code, item_id:  item}
           });
         }
       });

@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   post 'qr_order' => 'orders#create_qr_order'
 
   get 'scan' => 'orders#scan_barcode_item'
+  get 'scan_member' => 'orders#scan_barcode_member'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

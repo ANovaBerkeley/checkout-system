@@ -50,13 +50,24 @@ class OrdersController < ApplicationController
     @member = Member.all
   end
 
-  def scan_barcode_item
-    render :scan_barcode
+  def scan_barcode_item(item_upc=nil)
+    # puts 'i am here'
+    # if params
+      # puts params[:upc]
+    # end
+    @item = nil
+    render :scan_barcode_item
   end
 
   def scan_barcode_member
-    item_upc = params[:upc]
-    render :scan_barcode
+    # @item = params[:upc]
+    # puts 'hello'
+    # puts params[:upc]
+    # item_id = 11
+    redirect_to :root
+    # redirect_to scan_barcode_item(:item_upc => params[:upc])
+    # render :scan_barcode_item
+    # redirect_to item_path(:id => item_id)
   end
 
   def create_barcode_order
