@@ -47,11 +47,23 @@ function load_quagga(){
           code = order_by_occurrence(last_result)[0];
           last_result = [];
           Quagga.stop();
-          $.ajax({
-            type: "GET",
-            url: '/scan_member',
-            data: { upc: code, item_id:  item}
-          });
+          if (item == -1) {
+            console.log('first one');
+            $.ajax({
+              type: "POST",
+              url: '/scan_member',
+              data: { upc: code, item_id:  item}
+            });
+          } else {
+            console.log('second one');
+            $.ajax({
+              type: "POST",
+              url: '/barcode_order',
+              data: { upc: code, item_id:  item}
+            });
+
+          }
+          
         }
       });
     }
