@@ -10,8 +10,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    puts 'what'
-    puts params[:id]
     @item = params[:id]
   end
 

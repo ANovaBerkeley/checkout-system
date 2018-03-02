@@ -51,21 +51,48 @@ class OrdersController < ApplicationController
   end
 
   def scan_barcode_item()
-    @item = nil
     render :scan_barcode_item
   end
 
   def scan_barcode_member
     @item = params[:upc]
-    puts 'hello'
-    puts params[:upc]
+    # TODO: figure out how to get item id from barcode
     item_id = 11
     redirect_to item_path(:id => item_id)
   end
 
   def create_barcode_order
-    puts 'hereeee'
-    redirect_to :root
+    # TODO: figure out how to get member from barcode
+    member_upc = params[:upc]
+    item_id = params[:item_id]
+
+    # TODO: figure out why notices and alerts aren't working
+
+    params[:order] = Hash.new
+    params[:order][:item_id] = params[:item_id]
+    params[:order][:quantity] = 1
+    params[:order][:member_id] = 26
+    params[:order][:expire_at] = DateTime.new(2018,3,21)
+    
+    if Item.find_by_id(params[:item_id]).remaining_quantity >= params[:order][:quantity].to_i
+      params[:order][:status] = true
+      @order = Order.new(order_params)
+      if @order.save
+        @current_user = current_user
+        @borrowed_item = Item.find_by_id(params[:order][:item_id])
+        @borrowed_item.decrement!(:remaining_quantity, params[:order][:quantity].to_i)
+        redirect_to :root, notice: 'Order was successfully created.'
+        begin
+          OrderMailer.delay.create_order(@order, @current_user).deliver
+        rescue Exception => e
+        end
+      else
+        render :new
+      end
+    else
+      flash[:alert] = 'The quantity you entered is not currently available'
+      redirect_to :root
+    end
   end
 
   def new_qr_item
