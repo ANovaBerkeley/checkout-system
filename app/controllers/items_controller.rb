@@ -10,7 +10,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = params[:id]
+    @item = Item.first
+    # Following line should find correct item by id
+    # @item = params[:id]
   end
 
   def edit

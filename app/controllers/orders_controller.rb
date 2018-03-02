@@ -50,14 +50,15 @@ class OrdersController < ApplicationController
     @member = Member.all
   end
 
-  def scan_barcode_item()
-    render :scan_barcode_item
+  def scan
+    render :scan
   end
 
-  def scan_barcode_member
+  def scan_member
+    # TODO: figure out why page cuts off when navigating from sidebar
     @item = params[:upc]
     # TODO: figure out how to get item id from barcode
-    item_id = 11
+    item_id = Item.first.id
     redirect_to item_path(:id => item_id)
   end
 
@@ -71,50 +72,7 @@ class OrdersController < ApplicationController
     params[:order] = Hash.new
     params[:order][:item_id] = params[:item_id]
     params[:order][:quantity] = 1
-    params[:order][:member_id] = 26
-    params[:order][:expire_at] = DateTime.new(2018,3,21)
-    
-    if Item.find_by_id(params[:item_id]).remaining_quantity >= params[:order][:quantity].to_i
-      params[:order][:status] = true
-      @order = Order.new(order_params)
-      if @order.save
-        @current_user = current_user
-        @borrowed_item = Item.find_by_id(params[:order][:item_id])
-        @borrowed_item.decrement!(:remaining_quantity, params[:order][:quantity].to_i)
-        redirect_to :root, notice: 'Order was successfully created.'
-        begin
-          OrderMailer.delay.create_order(@order, @current_user).deliver
-        rescue Exception => e
-        end
-      else
-        render :new
-      end
-    else
-      flash[:alert] = 'The quantity you entered is not currently available'
-      redirect_to :root
-    end
-  end
-
-  def new_qr_item
-    render :new_qr_item
-  end
-
-  def new_qr_member
-    puts 'hello'
-    puts Qrio::Qr.load(params[:file].path).qr.text
-    @item = 8
-    render :new_qr_member
-  end
-
-  def create_qr_order
-    puts 'hhello'
-    puts Qrio::Qr.load(params[:file].path).qr.text
-    puts params[:item_id]
-
-    params[:order] = Hash.new
-    params[:order][:item_id] = params[:item_id]
-    params[:order][:quantity] = 1
-    params[:order][:member_id] = 26
+    params[:order][:member_id] = Member.first.id
     params[:order][:expire_at] = DateTime.new(2018,3,21)
     
     if Item.find_by_id(params[:item_id]).remaining_quantity >= params[:order][:quantity].to_i

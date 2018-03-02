@@ -51,7 +51,7 @@ function load_quagga(){
             console.log('first one');
             $.ajax({
               type: "POST",
-              url: '/scan_member',
+              url: '/orders/scan_member',
               data: { upc: code, item_id:  item}
             });
           } else {

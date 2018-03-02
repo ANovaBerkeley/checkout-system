@@ -5,7 +5,7 @@
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h1>Scan Member</h1>
+        <h1>Check out <%= @item.name %></h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-home"></i>Home Page</a></li>
           <li class="active">Add order</li>
@@ -17,10 +17,20 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-6">
-           <div id='barcode-scanner'></div>
-           <div id='testtest'>
-            <%= @item %>
-           </div>
+           <div class="box box-header">
+              <div class="box-header with-border">
+                <h3 class="box-title">Scan Member</h3>
+              </div>
+              
+              <div class="box-body">
+                <div id='barcode-scanner'></div>
+                 <div id='testtest' style="display: none;">
+                  <%= @item.id %>
+                 </div>
+              </div>
+              <!-- /.box-body -->
+              
+            </div>
             <!-- /.box -->
           </div>
           <!--/.col (right) -->
