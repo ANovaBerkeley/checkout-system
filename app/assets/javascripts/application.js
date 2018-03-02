@@ -73,7 +73,8 @@ function load_quagga(){
         target: document.querySelector('#barcode-scanner')  
       },
       decoder: {
-          readers : ['ean_reader','ean_8_reader','code_39_reader','code_39_vin_reader','codabar_reader','upc_reader','upc_e_reader']
+          // readers : ['ean_reader','ean_8_reader','code_39_reader','code_39_vin_reader','codabar_reader','upc_reader','upc_e_reader']
+          readers : ['ean_reader']
       }
     },function(err) {
         if (err) { console.log(err); return }
