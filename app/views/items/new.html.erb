@@ -59,6 +59,10 @@
                   <label>Category</label>
                   <%= f.select(:category, [["Laptop", "Laptop"], ["Other", "Other"]], {}, { :class => 'form-control' })%>
                 </div>
+                <div class="form-group">
+                  <label>Barcode UPC</label>
+                  <%= f.text_field :upc, class: "form-control", placeholder: "Enter Barcode", required: true %>
+                </div>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">

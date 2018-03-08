@@ -10,9 +10,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.first
+    # @item = Item.first
     # TODO: Following line should find correct item by id
-    # @item = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def edit
@@ -56,6 +56,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :category, :quantity, :description, :remaining_quantity)
+    params.require(:item).permit(:name, :category, :quantity, :description, :remaining_quantity, :upc)
   end
 end
