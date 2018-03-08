@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   get 'return/:id' => 'orders#disable'
   get 'past_orders' => 'orders#old'
 
+<<<<<<< HEAD
   post 'barcode_order' => 'orders#create_barcode_order'
+=======
+  get 'new_qr' => 'orders#new_qr'
+  post 'qr_order' => 'orders#create_qr_order'
+>>>>>>> 8169734b02debbe7c77c2779aab28d61ccc897a8
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

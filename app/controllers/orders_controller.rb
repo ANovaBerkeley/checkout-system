@@ -50,6 +50,7 @@ class OrdersController < ApplicationController
     @member = Member.all
   end
 
+<<<<<<< HEAD
   def scan
     render :scan
   end
@@ -81,12 +82,12 @@ class OrdersController < ApplicationController
     # TODO: figure out why notices and alerts aren't working
 
     params[:order] = Hash.new
-    params[:order][:item_id] = params[:item_id]
+    params[:order][:item_id] = item_id
     params[:order][:quantity] = 1
     params[:order][:member_id] = member.id
     params[:order][:expire_at] = DateTime.new(2018,3,21)
     
-    if Item.find_by_id(params[:item_id]).remaining_quantity >= params[:order][:quantity].to_i
+    if Item.find_by_id(item_id).remaining_quantity >= params[:order][:quantity].to_i
       params[:order][:status] = true
       @order = Order.new(order_params)
       if @order.save
