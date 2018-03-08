@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  respond_to :js, :html, :json, :xml
+
 
   require 'rqrcode'
   require 'qrio'
@@ -70,7 +72,7 @@ class OrdersController < ApplicationController
     item_id = params[:item_id]
 
     # TODO: figure out why notices and alerts aren't working
-
+    
     params[:order] = Hash.new
     params[:order][:item_id] = params[:item_id]
     params[:order][:quantity] = 1
@@ -84,6 +86,7 @@ class OrdersController < ApplicationController
         @current_user = current_user
         @borrowed_item = Item.find_by_id(params[:order][:item_id])
         @borrowed_item.decrement!(:remaining_quantity, params[:order][:quantity].to_i)
+        respond_with(@orders)
         redirect_to :root, notice: 'Order was successfully created.'
         begin
           OrderMailer.delay.create_order(@order, @current_user).deliver
