@@ -35,7 +35,7 @@
                       <th>Quantity</th>
                       <th>Borrowed at</th>
                       <th>Returned at</th>
-                      <th>Member</th>
+                      <th>Student</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -47,7 +47,7 @@
                       <td><%= order.quantity %></td>
                       <td><%= order.created_at.strftime("%d/%m/%Y, %H:%M") %></td>
                       <td><%= order.updated_at.strftime("%d/%m/%Y, %H:%M") %></td>
-                      <td><%= order.member.name %></td>
+                      <td><%= order.student.name %></td>
                     </tr>
                     <% end %>
                   </tbody>

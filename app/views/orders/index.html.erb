@@ -121,7 +121,7 @@
                       </td>
                       <% end %>
                       <td>
-                        <%= order.member.name %>
+                        <%= order.student.name %>
                       </td>
                       <td>
                         <%= link_to "", { :controller => :orders, :action => :disable, :id => order.id }, { class: "ion ion-log-in"} %>
@@ -147,7 +147,7 @@
           <div class="col-md-6">
             <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Members (<%= @members.count %>)</h3>
+                <h3 class="box-title">Students (<%= @students.count %>)</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -163,14 +163,14 @@
                       <i class="ion ion-trash-b"></i>
                     </th>
                   </tr>
-                  <% @members.each do |member| %>
+                  <% @students.each do |student| %>
                   <tr>
-                    <td><%= member.name %></td>
-                    <td><%= member.email %></td>
-                    <td><%= member.phone %></td>
-                    <td><%= link_to "", edit_member_path(member), { class: "ion ion-edit"} %></td>
+                    <td><%= student.name %></td>
+                    <td><%= student.email %></td>
+                    <td><%= student.phone %></td>
+                    <td><%= link_to "", edit_student_path(student), { class: "ion ion-edit"} %></td>
                     <td>
-                      <%= link_to member, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <%= link_to student, method: :delete, data: { confirm: 'Are you sure?' } do %>
                       <i class="ion ion-trash-b"></i>
                       <% end %>
                     </td>
@@ -178,10 +178,10 @@
                   <% end %>
                 </table>
               </div>
-              <% if @members.count > 0 %>
+              <% if @students.count > 0 %>
                 <div class="box-footer">
                   Delete All
-                  <%= link_to delete_all_members_path, method: :post, data: { confirm: 'Are you sure?' } do %>
+                  <%= link_to delete_all_students_path, method: :post, data: { confirm: 'Are you sure?' } do %>
                     <i class="ion ion-trash-b"></i>
                   <% end %>
                 </div>

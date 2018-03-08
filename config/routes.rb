@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :orders do
     collection { get :scan }
-    collection { post :scan_member }
+    collection { post :scan_student }
   end
-  resources :members do
+  resources :students do
     collection { post :import }
     collection { post :delete_all }
   end

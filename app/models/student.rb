@@ -1,4 +1,4 @@
-class Member < ApplicationRecord
+class Student < ApplicationRecord
   has_many :orders
   has_many :items, through: :orders
 
@@ -11,7 +11,7 @@ class Member < ApplicationRecord
 
   def self.import(file)
   	CSV.foreach(file.path, headers:true) do |row|
-  		Member.create! row.to_hash
+  		Student.create! row.to_hash
   	end
   end
 end

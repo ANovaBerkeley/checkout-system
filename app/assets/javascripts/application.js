@@ -49,7 +49,7 @@ function load_quagga(){
           if (item == -1) {
             $.ajax({
               type: "POST",
-              url: '/orders/scan_member',
+              url: '/orders/scan_student',
               data: { upc: code, item_id:  item}
             });
           } else {

@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-    @members = Member.all
+    @students = Student.all
     @items = Item.all
     @active = Order.active?
     @expired = Order.expired?
@@ -47,14 +47,14 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @member = Member.all
+    @student = Student.all
   end
 
   def scan
     render :scan
   end
 
-  def scan_member
+  def scan_student
     # TODO: figure out why page cuts off when navigating from sidebar
     puts 'hello'
     puts params[:upc][0...-1]
@@ -69,12 +69,12 @@ class OrdersController < ApplicationController
   end
 
   def create_barcode_order
-    # TODO: figure out how to get member from barcode
-    member_upc = params[:upc]
+    # TODO: figure out how to get student from barcode
+    student_upc = params[:upc]
     puts 'hello 74'
-    puts member_upc
+    puts student_upc
     item_id = params[:item_id]
-    member = Member.find_by_upc(params[:upc][0...-1])
+    student = Student.find_by_upc(params[:upc][0...-1])
 
     # TODO: error handling
 
@@ -83,7 +83,7 @@ class OrdersController < ApplicationController
     params[:order] = Hash.new
     params[:order][:item_id] = item_id
     params[:order][:quantity] = 1
-    params[:order][:member_id] = member.id
+    params[:order][:student_id] = student.id
     params[:order][:expire_at] = DateTime.new(2018,3,21)
     
     if Item.find_by_id(item_id).remaining_quantity >= params[:order][:quantity].to_i
@@ -129,8 +129,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def get_members 
-    Member.all.map do |member| [member_id, member] 
+  def get_students 
+    Student.all.map do |student| [student_id, student] 
     end
   end
 
@@ -154,6 +154,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:quantity, :expire_at, :status, :item_id, :member_id)
+      params.require(:order).permit(:quantity, :expire_at, :status, :item_id, :student_id)
     end
 end
