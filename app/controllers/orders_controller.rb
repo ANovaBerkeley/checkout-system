@@ -58,25 +58,34 @@ class OrdersController < ApplicationController
 
   def scan_member
     # TODO: figure out why page cuts off when navigating from sidebar
-    @item = params[:upc]
     puts 'hello'
-    puts @item
-    # TODO: figure out how to get item id from barcode
-    item_id = Item.first.id
-    redirect_to item_path(:id => item_id)
+    puts params[:upc][0...-1]
+    item = Item.find_by_upc(params[:upc][0...-1])
+    # TODO: error handling
+    if item.nil?
+      puts 'do something here'
+    else
+      # item_id = Item.first.id
+      redirect_to item_path(:id => item.id)
+    end
   end
 
   def create_barcode_order
     # TODO: figure out how to get member from barcode
     member_upc = params[:upc]
+    puts 'hello 74'
+    puts member_upc
     item_id = params[:item_id]
+    member = Member.find_by_upc(params[:upc][0...-1])
+
+    # TODO: error handling
 
     # TODO: figure out why notices and alerts aren't working
     
     params[:order] = Hash.new
     params[:order][:item_id] = params[:item_id]
     params[:order][:quantity] = 1
-    params[:order][:member_id] = Member.first.id
+    params[:order][:member_id] = member.id
     params[:order][:expire_at] = DateTime.new(2018,3,21)
     
     if Item.find_by_id(params[:item_id]).remaining_quantity >= params[:order][:quantity].to_i

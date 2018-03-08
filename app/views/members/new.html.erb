@@ -51,6 +51,10 @@
                 <label>Phone Number</label>
                 <%= f.text_field :phone, autocomplete: "off", placeholder: "Enter Phone Number", class: "form-control" %>
               </div>
+              <div class="form-group">
+                <label>Barcode UPC</label>
+                <%= f.text_field :upc, class: "form-control", placeholder: "Enter Barcode", required: true %>
+              </div>
             <!-- /.box-body -->
             <div class="box-footer">
               <%= f.submit "Submit", class: "btn btn-primary"%>
