@@ -50,7 +50,6 @@ class OrdersController < ApplicationController
     @member = Member.all
   end
 
-<<<<<<< HEAD
   def scan
     render :scan
   end
