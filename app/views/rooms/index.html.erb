@@ -30,6 +30,9 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
+                      <th>
+                        <i class="fa fa-map-marker"></i>
+                      </th>
                       <th>ID</th>
                       <th>Name</th>
                       <th>Date</th>
@@ -42,8 +45,9 @@
                   <tbody>
                     <% @rooms.each do |room| %>
                     <tr>
+                      <td><%= link_to "", room_path(room), { class: "fa fa-map-marker"} %></td>
                       <td><%= room.id %></td>
-                      <td><%= room.name %></td>
+                      <td><%= link_to room.name, room_path(room)  %></td>
                       <td><%= room.date %></td>
                       <td><%= room.time.strftime("%I:%M %p") %></td>
                       <td><%= room.location %></td>

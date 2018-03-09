@@ -1,24 +1,82 @@
-<p id="notice"><%= notice %></p>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <%= render 'layouts/header' %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>Checking In to <%= @room.name %></h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i>Home Page</a></li>
+          <li class="active">Check In</li>
+        </ol>
+      </section>
 
-<p>
-  <strong>Name:</strong>
-  <%= @room.name %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @room.date %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @room.time %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @room.location %>
-</p>
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+           <div class="box box-header">
+              <div class="box-header with-border">
+                <h3 class="box-title">Scan Student</h3>
+              </div>
+              
+              <div class="box-body">
+                <div id='barcode-scanner'></div>
+                 <div id='testtest' style="display: none;">
+                  <%= @room.id %>
+                 </div>
+              </div>
+              <!-- /.box-body -->
+              
+            </div>
+            <!-- /.box -->
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+           <div class="box box-header">
+              <div class="box-header with-border">
+                <h3 class="box-title">Room Roster</h3>
+              </div>
+              
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <tr>
+                    <th>Name</th>
+                    <th>E-mail</th>
+                    <th>Phone</th>
+                    <th>
+                      <i class="ion ion-edit"></i>
+                    </th>
+                    <th>
+                      <i class="ion ion-trash-b"></i>
+                    </th>
+                  </tr>
+                  
+                </table>
+              </div>
+              <!-- /.box-body -->
+              
+            </div>
+            <!-- /.box -->
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%= render 'layouts/footer' %>
+    <!-- ./wrapper -->
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $(document).ready(function () {
+        $.widget.bridge('uibutton', $.ui.button);
+        $('.datepicker').datepicker({format: 'yyyy/mm/dd'});
+      });
+    </script>
+  </div>
+</body>
