@@ -7,7 +7,10 @@ class Room < ApplicationRecord
 
 	def self.import(file)
 	  CSV.foreach(file.path, headers:true) do |row|
-	  	Room.create! row.to_hash
+	  	hash = row.to_hash
+	  	hash['date'] = Date.strptime(hash['date'], '%m/%d/%Y')
+	  	hash['time'] = hash['time'].to_time(:utc)
+	  	Room.create! hash
 	  end
 	end
 end
