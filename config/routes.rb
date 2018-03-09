@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :mentors do
+    collection { post :import }
+  end
   devise_for :users
   resources :orders do
     collection { get :scan }
