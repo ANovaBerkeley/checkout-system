@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :checkins
   resources :rooms do
     collection { post :import }
   end

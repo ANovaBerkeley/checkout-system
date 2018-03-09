@@ -1,4 +1,8 @@
 class Room < ApplicationRecord
+	has_many :checkins
+  	has_many :students, through: :checkins
+  	has_many :mentors, through: :checkins
+
 	validates :name, presence: true
 	validates :date, presence: true
 	validates :time, presence: true
