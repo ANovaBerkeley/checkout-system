@@ -2,7 +2,6 @@ class Room < ApplicationRecord
 	validates :name, presence: true
 	validates :date, presence: true
 	validates :time, presence: true
-	validates :upc, presence: true
 
 	require 'csv'
 
