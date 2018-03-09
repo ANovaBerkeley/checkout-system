@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :rooms do
+    collection { post :import }
+  end
   resources :mentors do
     collection { post :import }
   end

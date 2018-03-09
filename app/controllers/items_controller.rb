@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to :root, notice: 'Item was successfully updated.'
+      redirect_to items_url, notice: 'Item was successfully updated.'
     else
       render :edit
     end

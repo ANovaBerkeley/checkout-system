@@ -55,7 +55,7 @@ class MentorsController < ApplicationController
   # DELETE /mentors/1.json
   def destroy
     @mentor.destroy
-    redirect_to :root, notice: 'Mentor was successfully destroyed.'
+    redirect_to mentors_url, notice: 'Mentor was successfully destroyed.'
   end
 
   private

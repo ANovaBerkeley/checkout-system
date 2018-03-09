@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180309073551) do
+ActiveRecord::Schema.define(version: 20180309083418) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 20180309073551) do
     t.integer  "student_id"
     t.index ["item_id"], name: "index_orders_on_item_id"
     t.index ["student_id"], name: "index_orders_on_student_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "name"
+    t.date     "date"
+    t.time     "time"
+    t.string   "location"
+    t.string   "upc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|
