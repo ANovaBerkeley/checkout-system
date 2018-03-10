@@ -24,41 +24,45 @@ class CheckinsController < ApplicationController
   # POST /checkins
   # POST /checkins.json
   def create
-    @checkin = Checkin.new(checkin_params)
+    upc = params[:upc][0...-1]
+    room = Room.find_by_id(params[:room_id])
 
-    respond_to do |format|
-      if @checkin.save
-        format.html { redirect_to @checkin, notice: 'Checkin was successfully created.' }
-        format.json { render :show, status: :created, location: @checkin }
+    params[:checkin] = Hash.new
+    params[:checkin][:room_id] = room.id
+
+    student = Student.find_by_upc(upc)
+    if student.nil?
+      mentor = Mentor.find_by_upc(upc)
+      if mentor.nil?
+        puts 'darn'
+        redirect_to :root
       else
-        format.html { render :new }
-        format.json { render json: @checkin.errors, status: :unprocessable_entity }
+        params[:checkin][:mentor_id] = mentor.id
+        params[:checkin][:is_mentor] = true
       end
+    else
+      params[:checkin][:student_id] = student.id
+      params[:checkin][:is_mentor] = false
+    end
+
+    @checkin = Checkin.new(checkin_params)
+    if @checkin.save
+      redirect_to :back
+    else
+      redirect_to :root
     end
   end
 
   # PATCH/PUT /checkins/1
   # PATCH/PUT /checkins/1.json
   def update
-    # respond_to do |format|
-    #   if @checkin.update(checkin_params)
-    #     format.html { redirect_to @checkin, notice: 'Checkin was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @checkin }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @checkin.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # DELETE /checkins/1
   # DELETE /checkins/1.json
   def destroy
-    # @checkin.destroy
-    # respond_to do |format|
-    #   format.html { redirect_to checkins_url, notice: 'Checkin was successfully destroyed.' }
-    #   format.json { head :no_content }
-    # end
+    @checkin.destroy
+    redirect_to :back, notice: 'Check In was successfully destroyed.'
   end
 
   private
@@ -69,6 +73,6 @@ class CheckinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def checkin_params
-      params.require(:checkin).permit(:is_mentor)
+      params.require(:checkin).permit(:is_mentor, :room_id, :student_id, :mentor_id)
     end
 end

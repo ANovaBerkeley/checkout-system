@@ -39,26 +39,33 @@ function load_quagga(){
     if (Quagga.initialized == undefined) {
       Quagga.onDetected(function(result) {
         console.log('hello');
-        var item = document.getElementById('testtest').innerHTML;
+        var is_room = document.getElementById('is_room').innerHTML;
+        var id = document.getElementById('item_or_room_id').innerHTML;
         var last_code = result.codeResult.code;
         last_result.push(last_code);
         if (last_result.length > 20) {
           code = order_by_occurrence(last_result)[0];
           last_result = [];
           Quagga.stop();
-          if (item == -1) {
+          if (id == -1) {
             $.ajax({
               type: "POST",
               url: '/orders/scan_student',
-              data: { upc: code, item_id:  item}
+              data: { upc: code, item_id:  id}
             });
-          } else {
+          } else if (is_room == -1) {
             $.ajax({
               type: "POST",
               url: '/barcode_order',
-              data: { upc: code, item_id:  item}
+              data: { upc: code, item_id:  id}
             });
 
+          } else {
+            $.ajax({
+              type: "POST",
+              url: '/checkins',
+              data: { upc: code, room_id:  id}
+            });
           }
           
         }

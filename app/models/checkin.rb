@@ -3,6 +3,9 @@ class Checkin < ApplicationRecord
   	belongs_to :student, optional: true
   	belongs_to :mentor, optional: true
 
-  	validates :item_id, presence: true
-  	validates :is_mentor, presence: true
+  	validates :room_id, presence: true
+
+  	def self.roster room
+  		Checkin.where(room_id: room.id)
+  	end
 end

@@ -5,7 +5,7 @@
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h1>Checking In to <%= @room.name %></h1>
+        <h1><%= @room.name %></h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-home"></i>Home Page</a></li>
           <li class="active">Check In</li>
@@ -24,9 +24,12 @@
               
               <div class="box-body">
                 <div id='barcode-scanner'></div>
-                 <div id='testtest' style="display: none;">
-                  <%= @room.id %>
-                 </div>
+                  <div id='is_room' style="display: none;">
+                    <%= 0 %>
+                  </div>
+                  <div id='item_or_room_id' style="display: none;">
+                    <%= @room.id %>
+                  </div>
               </div>
               <!-- /.box-body -->
               
@@ -46,15 +49,29 @@
                   <tr>
                     <th>Name</th>
                     <th>E-mail</th>
-                    <th>Phone</th>
-                    <th>
-                      <i class="ion ion-edit"></i>
-                    </th>
+                    <th>Status</th>
                     <th>
                       <i class="ion ion-trash-b"></i>
                     </th>
                   </tr>
-                  
+                  <% @checkins.each do |checkin| %>
+                  <tr>
+                    <% if checkin.is_mentor %>
+                      <td><%= checkin.mentor.name %></td>
+                      <td><%= checkin.mentor.email %></td>
+                      <td>Mentor</td>
+                    <% else %>
+                      <td><%= checkin.student.name %></td>
+                      <td><%= checkin.student.email %></td>
+                      <td>Student</td>
+                    <% end %>
+                    <td>
+                      <%= link_to checkin, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <i class="ion ion-trash-b"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% end %>
                 </table>
               </div>
               <!-- /.box-body -->
