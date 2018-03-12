@@ -13,8 +13,14 @@ class Room < ApplicationRecord
 	  CSV.foreach(file.path, headers:true) do |row|
 	  	hash = row.to_hash
 	  	hash['date'] = Date.strptime(hash['date'], '%m/%d/%Y')
-	  	hash['time'] = hash['time'].to_time(:utc)
+	  	dt = hash['date'].strftime('%d/%m/%Y') + ' ' + hash['time']
+	  	hash['time'] = dt.to_time(:utc)
 	  	Room.create! hash
 	  end
+	end
+
+	def self.upcoming?
+		# hacky because Time.current doesn't use correct timezone in the where clause for some reason
+		Room.where("date > ? OR date = ? AND time > ?", Date.today, Date.today, Time.current-7*60*60)
 	end
 end

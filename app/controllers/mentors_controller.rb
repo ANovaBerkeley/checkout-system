@@ -58,6 +58,11 @@ class MentorsController < ApplicationController
     redirect_to mentors_url, notice: 'Mentor was successfully destroyed.'
   end
 
+  def delete_all
+    Mentor.delete_all
+    redirect_to :root, notice: 'Mentors successfully destroyed.'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mentor

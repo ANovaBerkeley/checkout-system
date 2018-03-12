@@ -25,6 +25,8 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
+    dt = params[:room][:date] + ' ' + params[:room][:time]
+    params[:room][:time] = dt.to_time(:utc)
     @room = Room.new(room_params)
     if @room.save
       redirect_to :root, notice: 'Room was successfully created.'
@@ -38,7 +40,7 @@ class RoomsController < ApplicationController
       Room.import(params[:file])
       redirect_to :root, notice: 'Items successfully created from CSV.'
     rescue
-      redirect_to :root, notice: 'Invalid CSV format.'
+      redirect_to :back, alert: 'Invalid CSV format.'
     end
   end
 

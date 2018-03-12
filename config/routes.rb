@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   resources :mentors do
     collection { post :import }
+    collection { post :delete_all }
   end
   devise_for :users
   resources :orders do
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-  root 'orders#index'
+  root 'students#home'
   get 'renew/:id' => 'orders#renew'
   get 'return/:id' => 'orders#disable'
   get 'past_orders' => 'orders#old'
