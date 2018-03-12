@@ -9,8 +9,6 @@ class StudentsController < ApplicationController
     @students = Student.all
     @mentors = Mentor.all
     @items = Item.all
-    @active = Order.active?
-    @expired = Order.expired?
     @upcoming = Room.upcoming?
   end
 

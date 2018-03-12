@@ -32,7 +32,7 @@
                       <th>ID</th>
                       <th>Name</th>
                       <th>Email</th>
-                      <th>Phone</th>
+                      <th>Barcode</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
@@ -43,7 +43,7 @@
                       <td><%= student.id %></td>
                       <td><%= student.name %></td>
                       <td><%= student.email %></td>
-                      <td><%= student.phone %></td>
+                      <td><%= student.upc %></td>
                       <td><%= link_to 'Edit', edit_student_path(student) %></td>
                       <td><%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure you want to delete this student?' } %></td>
                     </tr>

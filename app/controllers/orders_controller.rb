@@ -6,10 +6,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-    @students = Student.all
-    @items = Item.all
     @active = Order.active?
-    @expired = Order.expired?
   end
 
   def old
