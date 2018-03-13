@@ -27,5 +27,6 @@ Rails.application.routes.draw do
   get 'past_orders' => 'orders#old'
 
   post 'barcode_order' => 'orders#create_barcode_order'
+  post 'barcode_checkin' => 'checkins#create_barcode_checkin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

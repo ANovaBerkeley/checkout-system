@@ -10,6 +10,7 @@ class StudentsController < ApplicationController
     @mentors = Mentor.all
     @items = Item.all
     @upcoming = Room.upcoming?
+    @hackathon = Room.find_by_name("Hackathon Check-In")
   end
 
   def new

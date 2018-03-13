@@ -11,6 +11,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1.json
   def show
     @checkins = Checkin.roster(@room)
+    @checkin = Checkin.new
   end
 
   # GET /rooms/new
@@ -59,6 +60,16 @@ class RoomsController < ApplicationController
   def destroy
     @room.destroy
     redirect_to rooms_url, notice: 'Room was successfully destroyed.'
+  end
+
+  def get_students 
+    Student.all.map do |student| [student_id, student] 
+    end
+  end
+
+  def get_mentors
+    Mentor.all.map do |mentor| [mentor_id, mentor] 
+    end
   end
 
   private

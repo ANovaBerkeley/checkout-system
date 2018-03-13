@@ -82,6 +82,54 @@
           <!--/.col (right) -->
         </div>
         <!-- /.row -->
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+           <div class="box box-header">
+              <div class="box-header with-border">
+                <h3 class="box-title">Manual Check-In</h3>
+              </div>
+              
+              <%= form_for @checkin do |f| %>
+                <% if @checkin.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@checkin.errors.count, 'error') %> prohibited this check-in from being saved:</h2>
+                    <ul>
+                      <% @checkin.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+                <div class="box-body">
+                  <div class="form-group">
+                    <label>Status</label>
+                    <%= f.text_field :is_mentor, class: 'form-control', placeholder: 'Student/Mentor', required: true %>
+                  </div>
+                  <div class="form-group">
+                    <label>Student</label>
+                    <br>
+                    <%= f.select(:student_id, get_students, { include_blank: true } , { class: 'dropdown' , required: true }) %>
+                  </div>
+                  <div class="form-group">
+                    <label>Mentor</label>
+                    <br>
+                    <%= f.select(:mentor_id, get_mentors, { include_blank: true } , { class: 'dropdown' , required: true }) %>
+                  </div>
+                  <%= f.number_field :room_id, :value => @room.id, :hidden => true %>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <%= f.submit 'Submit', class: 'btn btn-primary' %>
+                </div>
+              <% end %>
+              <!-- /.box-body -->
+              
+            </div>
+            <!-- /.box -->
+          </div>
+        </div>
       </section>
       <!-- /.content -->
     </div>

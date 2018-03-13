@@ -21,9 +21,7 @@ class CheckinsController < ApplicationController
   def edit
   end
 
-  # POST /checkins
-  # POST /checkins.json
-  def create
+  def create_barcode_checkin
     upc = params[:upc][0...-1]
     room = Room.find_by_id(params[:room_id])
 
@@ -34,7 +32,6 @@ class CheckinsController < ApplicationController
     if student.nil?
       mentor = Mentor.find_by_upc(upc)
       if mentor.nil?
-        puts 'darn'
         redirect_to :root
       else
         params[:checkin][:mentor_id] = mentor.id
@@ -45,6 +42,17 @@ class CheckinsController < ApplicationController
       params[:checkin][:is_mentor] = false
     end
 
+    @checkin = Checkin.new(checkin_params)
+    if @checkin.save
+      redirect_to :back
+    else
+      redirect_to :root
+    end
+  end
+
+  # POST /checkins
+  # POST /checkins.json
+  def create
     @checkin = Checkin.new(checkin_params)
     if @checkin.save
       redirect_to :back

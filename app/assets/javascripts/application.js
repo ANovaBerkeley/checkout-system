@@ -63,7 +63,7 @@ function load_quagga(){
           } else {
             $.ajax({
               type: "POST",
-              url: '/checkins',
+              url: '/barcode_checkin',
               data: { upc: code, room_id:  id}
             });
           }
