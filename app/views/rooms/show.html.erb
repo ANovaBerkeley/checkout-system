@@ -104,18 +104,18 @@
 
                 <div class="box-body">
                   <div class="form-group">
-                    <label>Status</label>
-                    <%= f.text_field :is_mentor, class: 'form-control', placeholder: 'Student/Mentor', required: true %>
+                    <label>Mentor?</label>
+                    <%= f.select(:is_mentor, options_for_select([true, false]), { include_blank: true } , { class: 'dropdown' , required: true }) %>
                   </div>
                   <div class="form-group">
                     <label>Student</label>
                     <br>
-                    <%= f.select(:student_id, get_students, { include_blank: true } , { class: 'dropdown' , required: true }) %>
+                    <%= f.select(:student_id, get_students, { include_blank: true } , { class: 'dropdown' , required: false }) %>
                   </div>
                   <div class="form-group">
                     <label>Mentor</label>
                     <br>
-                    <%= f.select(:mentor_id, get_mentors, { include_blank: true } , { class: 'dropdown' , required: true }) %>
+                    <%= f.select(:mentor_id, get_mentors, { include_blank: true } , { class: 'dropdown' , required: false }) %>
                   </div>
                   <%= f.number_field :room_id, :value => @room.id, :hidden => true %>
                 </div>
