@@ -13,10 +13,21 @@ class Checkin < ApplicationRecord
       if Student.count == 0
         return []
       end
-  		room = Room.find_by_name("Hackathon Check-In")
-      if room.nil?
+  		check_in = Room.find_by_name("Hackathon Check-In")
+      if check_in.nil?
         return []
       end
-  		Checkin.where(room_id: room.id).where(is_mentor: false)
+  		Checkin.where(room_id: check_in.id).where(is_mentor: false)
   	end
+
+    def self.left_hackathon
+      if Student.count == 0
+        return []
+      end
+      check_out = Room.find_by_name("Hackathon Check-Out")
+      if check_out.nil?
+        return []
+      end
+      Checkin.where(room_id: check_out.id).where(is_mentor: false)
+    end
 end
