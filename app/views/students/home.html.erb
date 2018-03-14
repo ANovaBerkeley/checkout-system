@@ -53,7 +53,7 @@
             <!-- small box -->
             <div class="small-box bg-teal">
               <div class="inner">
-                <h3><%= Checkin.at_hackathon.count - Checkin.left_hackathon.count %></h3>
+                <h3><%= Checkin.students_at_hackathon.count - Checkin.students_left_hackathon.count %></h3>
                 <p>Students Present</p>
               </div>
               <div class="icon">
@@ -66,8 +66,8 @@
             <!-- small box -->
             <div class="small-box bg-purple">
               <div class="inner">
-                <h3><%= @upcoming.count %></h3>
-                <p>Upcoming Workshops</p>
+                <h3><%= Checkin.mentors_at_hackathon.count - Checkin.mentors_left_hackathon.count %></h3>
+                <p>Mentors Present</p>
               </div>
               <div class="icon">
                 <i class="ion ion-android-time"></i>

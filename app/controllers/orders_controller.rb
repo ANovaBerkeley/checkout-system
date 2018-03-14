@@ -53,26 +53,19 @@ class OrdersController < ApplicationController
 
   def scan_student
     # TODO: figure out why page cuts off when navigating from sidebar
-    puts 'hello'
-    puts params[:upc][0...-1]
     item = Item.find_by_upc(params[:upc][0...-1])
-    # TODO: error handling
     if item.nil?
       redirect_to :back
     else
-      # item_id = Item.first.id
       redirect_to item_path(:id => item.id)
     end
   end
 
   def create_barcode_order
     student_upc = params[:upc]
-    puts 'hello 74'
-    puts student_upc
     item_id = params[:item_id]
     student = Student.find_by_upc(params[:upc][0...-1])
 
-    # TODO: error handling
     if student.nil?
       redirect_to :back
     end
@@ -98,11 +91,11 @@ class OrdersController < ApplicationController
         rescue Exception => e
         end
       else
-        render :new
+        render :scan
       end
     else
       flash[:alert] = 'The quantity you entered is not currently available'
-      redirect_to :root
+      redirect_to :scan
     end
   end
 

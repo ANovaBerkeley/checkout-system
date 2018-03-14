@@ -41,7 +41,7 @@
           <div class="col-md-6">
            <div class="box box-header">
               <div class="box-header with-border">
-                <h3 class="box-title">Room Roster</h3>
+                <h3 class="box-title">Room Roster (<%= @checkins.count %>)</h3>
               </div>
               
               <div class="box-body">
@@ -141,6 +141,9 @@
       $(document).ready(function () {
         $.widget.bridge('uibutton', $.ui.button);
         $('.datepicker').datepicker({format: 'yyyy/mm/dd'});
+        $('.dropdown').select2( {
+          theme: "bootstrap"
+        });
       });
     </script>
   </div>
