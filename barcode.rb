@@ -10,13 +10,13 @@ require 'barby/outputter/png_outputter'
 
 require 'csv'
 
-csv_text = File.read('tmp/laptops.csv')
+csv_text = File.read('tmp/mentors.csv')
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
-  puts row['Name']
-  puts row['Barcode']
-  barcode = Barby::EAN13.new(row['Barcode'])
-  fname = 'tmp/barcodes/laptops/' + row['Name'] + '.png'
+  puts row['name']
+  puts row['upc']
+  barcode = Barby::EAN13.new(row['upc'])
+  fname = 'tmp/barcodes/mentors/' + row['name'] + '.png'
   File.open(fname, 'wb') do |f|
 	f.write barcode.to_png
   end

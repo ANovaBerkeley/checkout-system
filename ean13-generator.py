@@ -10,13 +10,13 @@ import csv
 def barcode_students():
     numbers = []
     numbers.append(978020)
-    numbers.append(13)
+    numbers.append(12)
     for _ in range(4):
         numbers.append(randrange(10))
     return numbers
 
 barcodes = []
-while len(barcodes) < 75:
+while len(barcodes) < 64:
     numbers = barcode_students()
     if numbers not in barcodes:
         print ''.join(map(str, numbers))
