@@ -6,10 +6,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-    @students = Student.all
-    @items = Item.all
     @active = Order.active?
-    @expired = Order.expired?
   end
 
   def old
@@ -56,27 +53,22 @@ class OrdersController < ApplicationController
 
   def scan_student
     # TODO: figure out why page cuts off when navigating from sidebar
-    puts 'hello'
-    puts params[:upc][0...-1]
     item = Item.find_by_upc(params[:upc][0...-1])
-    # TODO: error handling
     if item.nil?
-      puts 'do something here'
+      redirect_to :back
     else
-      # item_id = Item.first.id
       redirect_to item_path(:id => item.id)
     end
   end
 
   def create_barcode_order
-    # TODO: figure out how to get student from barcode
     student_upc = params[:upc]
-    puts 'hello 74'
-    puts student_upc
     item_id = params[:item_id]
     student = Student.find_by_upc(params[:upc][0...-1])
 
-    # TODO: error handling
+    if student.nil?
+      redirect_to :back
+    end
 
     # TODO: figure out why notices and alerts aren't working
 
@@ -84,7 +76,7 @@ class OrdersController < ApplicationController
     params[:order][:item_id] = item_id
     params[:order][:quantity] = 1
     params[:order][:student_id] = student.id
-    params[:order][:expire_at] = DateTime.new(2018,3,21)
+    params[:order][:expire_at] = DateTime.new(2018,3,17)
     
     if Item.find_by_id(item_id).remaining_quantity >= params[:order][:quantity].to_i
       params[:order][:status] = true
@@ -99,11 +91,11 @@ class OrdersController < ApplicationController
         rescue Exception => e
         end
       else
-        render :new
+        render :scan
       end
     else
       flash[:alert] = 'The quantity you entered is not currently available'
-      redirect_to :root
+      redirect_to :scan
     end
   end
 
@@ -131,6 +123,11 @@ class OrdersController < ApplicationController
 
   def get_students 
     Student.all.map do |student| [student_id, student] 
+    end
+  end
+
+  def get_mentors
+    Mentor.all.map do |mentor| [mentor_id, mentor] 
     end
   end
 

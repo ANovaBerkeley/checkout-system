@@ -5,6 +5,13 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
+  def home
+    @students = Student.all
+    @mentors = Mentor.all
+    @items = Item.all
+    @upcoming = Room.upcoming?
+  end
+
   def new
     @student = Student.new
   end
