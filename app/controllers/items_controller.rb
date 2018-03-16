@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :confirm]
 
   def index
     @items = Item.all
@@ -23,6 +23,9 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def confirm
   end
 
   def import

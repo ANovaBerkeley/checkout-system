@@ -60,7 +60,7 @@ class OrdersController < ApplicationController
       flash[:alert] = 'The quantity you entered is not currently available'
       redirect_to items_path
     else
-      redirect_to item_path(:id => item.id)
+      redirect_to confirm_item_path(:id => item.id)
     end
   end
 
