@@ -33,6 +33,7 @@ class CheckinsController < ApplicationController
       mentor = Mentor.find_by_upc(upc)
       if mentor.nil?
         redirect_to :root
+        return
       else
         params[:checkin][:mentor_id] = mentor.id
         params[:checkin][:is_mentor] = true

@@ -33,8 +33,8 @@ class OrdersController < ApplicationController
     @current_user = current_user
     @order = Order.find_by_id(params[:id])
     Order.disable(params[:id])
-    redirect_to :root
     flash[:notice] = "Item marked as returned. Thank you!"
+    redirect_to orders_path
 
     begin
       OrderMailer.delay.return_order(@order, @current_user).deliver
@@ -56,6 +56,9 @@ class OrdersController < ApplicationController
     item = Item.find_by_upc(params[:upc][0...-1])
     if item.nil?
       redirect_to :back
+    elsif item.remaining_quantity <= 0
+      flash[:alert] = 'The quantity you entered is not currently available'
+      redirect_to items_path
     else
       redirect_to item_path(:id => item.id)
     end
@@ -63,11 +66,12 @@ class OrdersController < ApplicationController
 
   def create_barcode_order
     student_upc = params[:upc]
-    item_id = params[:item_id]
+    item_id = params[:item_id].strip
     student = Student.find_by_upc(params[:upc][0...-1])
 
     if student.nil?
-      redirect_to :back
+      redirect_to new_order_path(item: item_id)
+      return
     end
 
     # TODO: figure out why notices and alerts aren't working
@@ -78,24 +82,19 @@ class OrdersController < ApplicationController
     params[:order][:student_id] = student.id
     params[:order][:expire_at] = DateTime.new(2018,3,17)
     
-    if Item.find_by_id(item_id).remaining_quantity >= params[:order][:quantity].to_i
-      params[:order][:status] = true
-      @order = Order.new(order_params)
-      if @order.save
-        @current_user = current_user
-        @borrowed_item = Item.find_by_id(params[:order][:item_id])
-        @borrowed_item.decrement!(:remaining_quantity, params[:order][:quantity].to_i)
-        redirect_to :root, notice: 'Order was successfully created.'
-        begin
-          OrderMailer.delay.create_order(@order, @current_user).deliver
-        rescue Exception => e
-        end
-      else
-        render :scan
+    params[:order][:status] = true
+    @order = Order.new(order_params)
+    if @order.save
+      @current_user = current_user
+      @borrowed_item = Item.find_by_id(params[:order][:item_id])
+      @borrowed_item.decrement!(:remaining_quantity, params[:order][:quantity].to_i)
+      redirect_to orders_path, notice: 'Order was successfully created.'
+      begin
+        OrderMailer.delay.create_order(@order, @current_user).deliver
+      rescue Exception => e
       end
     else
-      flash[:alert] = 'The quantity you entered is not currently available'
-      redirect_to :scan
+      redirect_to new_order_path(item: item_id)
     end
   end
 
@@ -107,7 +106,7 @@ class OrdersController < ApplicationController
         @current_user = current_user
         @borrowed_item = Item.find_by_id(params[:order][:item_id])
         @borrowed_item.decrement!(:remaining_quantity, params[:order][:quantity].to_i)
-        redirect_to :root, notice: 'Order was successfully created.'
+        redirect_to orders_path, notice: 'Order was successfully created.'
         begin
           OrderMailer.delay.create_order(@order, @current_user).deliver
         rescue Exception => e
