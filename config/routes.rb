@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :users
   resources :items do
     collection { post :import }
+    member { get :confirm }
   end
 
   root 'students#home'

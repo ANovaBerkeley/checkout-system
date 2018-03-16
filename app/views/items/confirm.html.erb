@@ -1,0 +1,48 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <%= render 'layouts/header' %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>Successfully Scanned <%= @item.name %></h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i>Home Page</a></li>
+          <li class="active">Add order</li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+           <div class="box box-header">
+              
+              <div class="box-body">
+                <a href="<%= scan_orders_path %>", style='margin-right:20px;'><div class='btn btn-primary'>Back</div></a>
+                <a href="<%= item_path(:id => @item.id) %>"><div class='btn btn-success'>Scan Student</div></a>
+              </div>
+              <!-- /.box-body -->
+              
+            </div>
+            <!-- /.box -->
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%= render 'layouts/footer' %>
+    <!-- ./wrapper -->
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $(document).ready(function () {
+        $.widget.bridge('uibutton', $.ui.button);
+        $('.datepicker').datepicker({format: 'yyyy/mm/dd'});
+      });
+    </script>
+  </div>
+</body>
