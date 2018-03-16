@@ -18,7 +18,14 @@ class Checkin < ApplicationRecord
         return []
       end
   		Checkin.where(room_id: check_in.id).where(is_mentor: false)
-  	end
+    end
+    
+    def self.students
+      if Student.count == 0
+        return []
+      end
+      Checkin.where(is_mentor: false)
+    end 
 
     def self.students_left_hackathon
       if Student.count == 0
