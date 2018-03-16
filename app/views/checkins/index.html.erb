@@ -37,9 +37,15 @@
                   <tbody>
                     <% @checkins.each do |checkin| %>
                     <tr>
-                      <td><%= checkin.student.name %></td>
-                      <td><%= checkin.room.name %></td>
-                      <td><%= link_to 'Delete', checkin, method: :delete, data: { confirm: 'Are you sure you want to delete this checkin?' } %></td>
+                    <% if checkin.student == nil %>
+                        <td> Invalid student %></td>
+                        <td><%= NA %></td>
+                        <td>Student</td>
+                    <% else %>
+                        <td><%= checkin.student.name %></td>
+                        <td><%= checkin.room.name %></td>
+                        <td><%= link_to 'Delete', checkin, method: :delete, data: { confirm: 'Are you sure you want to delete this checkin?' } %></td>
+                    <% end %>
                     </tr>
                     <% end %>
                   </tbody>
