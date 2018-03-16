@@ -33,7 +33,7 @@ class StudentsController < ApplicationController
       Student.import(params[:file])
       redirect_to :root, notice: 'Students successfully created from CSV.'
     rescue
-      redirect_to :root, notice: 'Invalid CSV format.'
+      redirect_to :root, alert: 'Invalid CSV format.'
     end
   end
 

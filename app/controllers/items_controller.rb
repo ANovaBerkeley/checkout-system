@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
       Item.import(params[:file])
       redirect_to :root, notice: 'Items successfully created from CSV.'
     rescue
-      redirect_to :root, notice: 'Invalid CSV format.'
+      redirect_to :root, alert: 'Invalid CSV format.'
     end
   end
 

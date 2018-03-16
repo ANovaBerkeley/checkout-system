@@ -48,7 +48,7 @@
                 <table class="table table-bordered table-hover">
                   <tr>
                     <th>Name</th>
-                    <th>E-mail</th>
+                    <th>Timestamp</th>
                     <th>Status</th>
                     <th>
                       <i class="ion ion-trash-b"></i>
@@ -58,11 +58,11 @@
                   <tr>
                     <% if checkin.is_mentor && checkin.mentor %>
                       <td><%= checkin.mentor.name %></td>
-                      <td><%= checkin.mentor.email %></td>
+                      <td><%= checkin.created_at.strftime("%m/%d/%Y, %H:%M:%S") %></td>
                       <td>Mentor</td>
                     <% elsif checkin.student %>
                       <td><%= checkin.student.name %></td>
-                      <td><%= checkin.student.email %></td>
+                      <td><%= checkin.created_at.strftime("%m/%d/%Y, %H:%M:%S") %></td>
                       <td>Student</td>
                     <% end %>
                     <td>
@@ -75,15 +75,7 @@
                 </table>
               </div>
               <!-- /.box-body -->
-              <div class="box box-header">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Raffle for Workshop </h3>
-                </div>
-                <div class="box-body">
-                  <input style="float: left" id="jo" type="submit" name="commit" value="Generate Winner" class="btn btn-primary" data-disable-with="Submit" />
-                  <div style="float: right; margin-right: 25px; margin-top: 5px; font-size: 17px" id="winner"></div>
-                </div>
-              </div>
+              
             </div>
             <!-- /.box -->
           </div>
@@ -137,6 +129,18 @@
               
             </div>
             <!-- /.box -->
+          </div>
+
+          <div class="col-md-6">
+            <div class="box box-header">
+              <div class="box-header with-border">
+                <h3 class="box-title">Raffle for Workshop </h3>
+              </div>
+              <div class="box-body">
+                <input style="float: left" id="jo" type="submit" name="commit" value="Generate Winner" class="btn btn-primary" data-disable-with="Submit" />
+                <div style="float: right; margin-right: 25px; margin-top: 5px; font-size: 17px" id="winner"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

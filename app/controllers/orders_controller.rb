@@ -76,8 +76,6 @@ class OrdersController < ApplicationController
       return
     end
 
-    # TODO: figure out why notices and alerts aren't working
-
     params[:order] = Hash.new
     params[:order][:item_id] = item_id
     params[:order][:quantity] = 1
