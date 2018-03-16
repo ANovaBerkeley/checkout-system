@@ -19,36 +19,6 @@
 //= require turbolinks
 //= require quagga
 
-// $(document).ajaxComplete(function(event, request) {
-//     var msg = request.getResponseHeader('X-Message');
-//     var type = request.getResponseHeader('X-Message-Type');
-//     toastr.options = {
-//       "closeButton": false,
-//       "debug": true,
-//       "newestOnTop": false,
-//       "progressBar": false,
-//       "positionClass": "toast-top-right",
-//       "preventDuplicates": false,
-//       "onclick": null,
-//       "showDuration": "300",
-//       "hideDuration": "500",
-//       "timeOut": "1500",
-//       "extendedTimeOut": "500",
-//       "showEasing": "swing",
-//       "hideEasing": "linear",
-//       "showMethod": "fadeIn",
-//       "hideMethod": "fadeOut"
-//     };
-//     console.log("ajaxComplete")
-//     console.log(msg);
-//     console.log(type);
-//     if (msg && type) {
-//       type = type.to_s.gsub('alert', 'error').gsub('notice', 'success');
-//       console.log("toasterrrrr");
-//       toastr[`${type}`](`${msg}`);
-//     }
-// });
-
 function order_by_occurrence(arr) {
   var counts = {};
   arr.forEach(function(value){

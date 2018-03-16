@@ -1,9 +1,0 @@
-<%= hello %>
-
-<% unless flash.empty? %>
-  <% flash.each do |f| %>
-    <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'success') %>
-    toastr['<%= type %>']('<%= f[1] %>');
-    console.log("toasterererererer")
-  <% end %>
-<% end %>
