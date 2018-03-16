@@ -54,8 +54,14 @@
                 </h1>
             </section>
             <div class="box">
-                    Hi this me
+                <div class="box-footer">
+                    <span>
+                        <input style="float: left" id="jo" type="submit" name="commit" value="Generate Winner" class="btn btn-primary" data-disable-with="Submit" />
+                        <div style="float: right; margin-right: 25px; margin-top: 3px; font-size: 20px" id="winner"></div>
+                    </span>
+                </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -73,6 +79,24 @@
         "info": true,
         "autoWidth": false
       });
+        var names = [];
+        var tablex = document.getElementsByTagName('table');
+        console.log(tablex);
+        var table = document.getElementsByTagName('table')[0];
+        console.log(table)
+        var rows = table.rows;
+        for (var i = 1; i < rows.length; i++) {
+            var name = rows[i].cells[0].innerHTML;
+            console.log(name)
+            names.push(name);
+        }
+      $("#jo").click(function() {
+        var randomNum = Math.floor((Math.random() * Math.floor(rows.length-1)));
+        var winner = names[randomNum]
+        console.log(randomNum)
+        console.log(winner)
+        $("#winner").text(winner + " wins!")
+      })
     });
   </script>
 </body>
