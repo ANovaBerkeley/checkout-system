@@ -52,7 +52,6 @@ class OrdersController < ApplicationController
   end
 
   def scan_student
-    # TODO: figure out why page cuts off when navigating from sidebar
     item = Item.find_by_upc(params[:upc][0...-1])
     if item.nil?
       flash[:alert] = 'Unsuccessful scan.'

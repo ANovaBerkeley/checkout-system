@@ -32,7 +32,7 @@ class CheckinsController < ApplicationController
       mentor = Mentor.find_by_upc(upc)
       if mentor.nil?
         flash[:alert] = 'Unsuccessful Scan.'
-        redirect_to :root
+        redirect_to :back
         return
       else
         params[:checkin][:mentor_id] = mentor.id
@@ -49,7 +49,7 @@ class CheckinsController < ApplicationController
       redirect_to :back
     else
       flash[:alert] = 'Unsuccessful Scan.'
-      redirect_to :root
+      redirect_to :back
     end
   end
 
@@ -61,8 +61,8 @@ class CheckinsController < ApplicationController
       flash[:notice] = 'Check In Successful.'
       redirect_to :back
     else
-      flash[:alert] = 'Unsuccessful Scan.'
-      redirect_to :root
+      flash[:alert] = 'Unsuccessful Check In.'
+      redirect_to :back
     end
   end
 
