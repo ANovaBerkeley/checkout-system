@@ -31,7 +31,9 @@ class CheckinsController < ApplicationController
     if student.nil?
       mentor = Mentor.find_by_upc(upc)
       if mentor.nil?
+        flash[:notice] = 'Unsuccessful Scan.'
         redirect_to :root
+        return
       else
         params[:checkin][:mentor_id] = mentor.id
         params[:checkin][:is_mentor] = true
@@ -43,8 +45,10 @@ class CheckinsController < ApplicationController
 
     @checkin = Checkin.new(checkin_params)
     if @checkin.save
+      flash[:notice] = 'Check In Successful.'
       redirect_to :back
     else
+      flash[:notice] = 'Unsuccessful Scan.'
       redirect_to :root
     end
   end
@@ -54,8 +58,10 @@ class CheckinsController < ApplicationController
   def create
     @checkin = Checkin.new(checkin_params)
     if @checkin.save
+      flash[:notice] = 'Check In Successful.'
       redirect_to :back
     else
+      flash[:notice] = 'Unsuccessful Scan.'
       redirect_to :root
     end
   end

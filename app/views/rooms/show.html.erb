@@ -56,11 +56,11 @@
                   </tr>
                   <% @checkins.each do |checkin| %>
                   <tr>
-                    <% if checkin.is_mentor %>
+                    <% if checkin.is_mentor && checkin.mentor %>
                       <td><%= checkin.mentor.name %></td>
                       <td><%= checkin.mentor.email %></td>
                       <td>Mentor</td>
-                    <% else %>
+                    <% elsif checkin.student %>
                       <td><%= checkin.student.name %></td>
                       <td><%= checkin.student.email %></td>
                       <td>Student</td>
