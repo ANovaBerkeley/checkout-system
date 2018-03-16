@@ -37,10 +37,10 @@
                       <th>Student</th>
                       <th>Borrowed at</th>
                       <th>
-                        <i class="ion ion-log-in"></i>
+                        Return
                       </th>
                       <th>
-                        <i class="ion ion-loop"></i>
+                        Renew
                       </th>
                       <th>
                         <i class="ion ion-trash-b"></i>
@@ -49,33 +49,35 @@
                   </thead>
                   <tbody>
                     <% @active.each do |order| %>
-                    <tr>
-                      <td>
-                        <%= order.item.id %>
-                      </td>
-                      <td>
-                        <%= order.item.category %>
-                      </td>
-                      <td>
-                        <%= order.item.name %>
-                      </td>
-                      <td><%= order.quantity %></td>
-                      <td>
-                        <%= order.student.name %>
-                      </td>
-                      <td><%= order.created_at.strftime("%d/%m/%Y, %H:%M") %></td>
-                      <td>
-                        <%= link_to "", { :controller => :orders, :action => :disable, :id => order.id }, { class: "ion ion-log-in"} %>
-                      </td>
-                      <td>
-                        <%= link_to "", { :controller => :orders, :action => :renew, :id => order.id }, { class: "ion ion-loop"} %>
-                      </td>
-                      <td >
-                        <%= link_to order, method: :delete, data: { confirm: 'Are you sure? If you are trying to return an item it is recommended to use the "return" button.' } do %>
-                        <i class="ion ion-trash-b"></i>
-                        <% end %>
-                      </td>
-                    </tr>
+                    <% if order.student && order.item %>
+                      <tr>
+                        <td>
+                          <%= order.item.id %>
+                        </td>
+                        <td>
+                          <%= order.item.category %>
+                        </td>
+                        <td>
+                          <%= order.item.name %>
+                        </td>
+                        <td><%= order.quantity %></td>
+                        <td>
+                          <%= order.student.name %>
+                        </td>
+                        <td><%= order.created_at.strftime("%m/%d/%Y, %H:%M") %></td>
+                        <td>
+                          <%= link_to "Return", { :controller => :orders, :action => :disable, :id => order.id } %>
+                        </td>
+                        <td>
+                          <%= link_to "Renew", { :controller => :orders, :action => :renew, :id => order.id } %>
+                        </td>
+                        <td >
+                          <%= link_to order, method: :delete, data: { confirm: 'Are you sure? If you are trying to return an item it is recommended to use the "return" button.' } do %>
+                          <i class="ion ion-trash-b"></i>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
                     <% end %>
                   </tbody>
                 </table>
