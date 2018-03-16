@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require select2
+//= require toastr
 //= require turbolinks
 //= require quagga
 
@@ -67,7 +68,7 @@ function load_quagga(){
               data: { upc: code, room_id:  id}
             });
           }
-          
+
         }
       });
     }
@@ -77,7 +78,7 @@ function load_quagga(){
         name : "Live",
         type : "LiveStream",
         numOfWorkers: navigator.hardwareConcurrency,
-        target: document.querySelector('#barcode-scanner')  
+        target: document.querySelector('#barcode-scanner')
       },
       decoder: {
           // readers : ['ean_reader','ean_8_reader','code_39_reader','code_39_vin_reader','codabar_reader','upc_reader','upc_e_reader']
