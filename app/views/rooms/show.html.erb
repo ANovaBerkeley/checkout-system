@@ -159,13 +159,20 @@
         var table = document.getElementsByTagName('table')[0];
         console.log(table)
         var rows = table.rows;
+        var mentorcount = 0;
         for (var i = 1; i < rows.length; i++) {
             var name = rows[i].cells[0].innerHTML;
-            console.log(name)
-            names.push(name);
+            var status = rows[i].cells[2].innerHTML;
+            console.log(name + " " + status)
+            if (status != "Student") {
+              mentorcount ++;
+              continue;
+            }  else {
+              names.push(name);
+            }
         }
         $("#jo").click(function() {
-          var randomNum = Math.floor((Math.random() * Math.floor(rows.length-1)));
+          var randomNum = Math.floor((Math.random() * Math.floor(rows.length-1-mentorcount)));
           var winner = names[randomNum]
           console.log(randomNum)
           console.log(winner)

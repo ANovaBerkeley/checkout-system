@@ -4,9 +4,8 @@ class CheckinsController < ApplicationController
   # GET /checkins
   # GET /checkins.json
   def index
-    @checkins = Checkin.all
+    @checkins = Checkin.students
   end
-
   # GET /checkins/1
   # GET /checkins/1.json
   def show
