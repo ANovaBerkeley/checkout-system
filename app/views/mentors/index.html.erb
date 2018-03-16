@@ -1,0 +1,75 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <%= render 'layouts/header' %>
+    <div class="content-wrapper">
+
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Mentors Roster
+        </h1>
+        <ol class="breadcrumb">
+          <li>
+            <a href="#">
+              <i class="fa fa-home"></i>
+              Home Page</a>
+          </li>
+          <li class="active">Mentors Roster</li>
+        </ol>
+      </section>
+
+      <section class="content">
+        <div class="row">
+          <div class="col-xs-12">
+            <!-- Main data table -->
+            <div class="box">
+
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Barcode</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @mentors.each do |mentor| %>
+                    <tr>
+                      <td><%= mentor.id %></td>
+                      <td><%= mentor.name %></td>
+                      <td><%= mentor.email %></td>
+                      <td><%= mentor.upc %></td>
+                      <td><%= link_to 'Edit', edit_mentor_path(mentor) %></td>
+                      <td><%= link_to 'Delete', mentor, method: :delete, data: { confirm: 'Are you sure you want to delete this mentor?' } %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.box-body -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <%= render 'layouts/footer' %>
+  </div>
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+      });
+    });
+  </script>
+</body>

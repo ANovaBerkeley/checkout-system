@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170423144447) do
+ActiveRecord::Schema.define(version: 20180309221544) do
+
+  create_table "checkins", force: :cascade do |t|
+    t.boolean  "is_mentor"
+    t.integer  "room_id"
+    t.integer  "mentor_id"
+    t.integer  "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mentor_id"], name: "index_checkins_on_mentor_id"
+    t.index ["room_id"], name: "index_checkins_on_room_id"
+    t.index ["student_id"], name: "index_checkins_on_student_id"
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -35,12 +47,14 @@ ActiveRecord::Schema.define(version: 20170423144447) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "remaining_quantity"
+    t.string   "upc"
   end
 
-  create_table "members", force: :cascade do |t|
+  create_table "mentors", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "phone"
+    t.string   "upc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,11 +64,30 @@ ActiveRecord::Schema.define(version: 20170423144447) do
     t.boolean  "status"
     t.date     "expire_at"
     t.integer  "item_id"
-    t.integer  "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "student_id"
     t.index ["item_id"], name: "index_orders_on_item_id"
-    t.index ["member_id"], name: "index_orders_on_member_id"
+    t.index ["student_id"], name: "index_orders_on_student_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "name"
+    t.date     "date"
+    t.time     "time"
+    t.string   "location"
+    t.string   "upc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "upc"
   end
 
   create_table "users", force: :cascade do |t|

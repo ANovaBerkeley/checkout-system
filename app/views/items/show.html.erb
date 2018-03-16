@@ -5,7 +5,7 @@
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h1>Create order</h1>
+        <h1>Check out <%= @item.name %></h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-home"></i>Home Page</a></li>
           <li class="active">Add order</li>
@@ -17,25 +17,22 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-6">
-            <!-- general form elements -->
-            <div class="box box-header">
+           <div class="box box-header">
               <div class="box-header with-border">
-                <h3 class="box-title">Scan Member</h3>
+                <h3 class="box-title">Scan Student</h3>
               </div>
-              <!-- /.box-header -->
+              
               <div class="box-body">
-                 <div class="form-group">
-                    <label>Select File</label>
-                    <%= form_tag(qr_order_path, multipart:true) do %>
-                      <%= file_field_tag :file, class: "form-control" %>
-                      <%= hidden_field_tag :item_id, @item, class: "form-control" %>
-                      <div class="box-footer">
-                        <%= submit_tag "Submit", class: "btn btn-primary" %>
-                      </div>
-                    <% end %>
+                <div id='barcode-scanner'></div>
+                  <div id='is_room' style="display: none;">
+                    <%= -1 %>
                   </div>
-                <!-- /.box-body -->
+                  <div id='item_or_room_id' style="display: none;">
+                    <%= @item.id %>
+                  </div>
               </div>
+              <!-- /.box-body -->
+              
             </div>
             <!-- /.box -->
           </div>

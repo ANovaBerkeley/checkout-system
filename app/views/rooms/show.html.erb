@@ -1,0 +1,150 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <%= render 'layouts/header' %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1><%= @room.name %></h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i>Home Page</a></li>
+          <li class="active">Check In</li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+           <div class="box box-header">
+              <div class="box-header with-border">
+                <h3 class="box-title">Scan Student</h3>
+              </div>
+              
+              <div class="box-body">
+                <div id='barcode-scanner'></div>
+                  <div id='is_room' style="display: none;">
+                    <%= 0 %>
+                  </div>
+                  <div id='item_or_room_id' style="display: none;">
+                    <%= @room.id %>
+                  </div>
+              </div>
+              <!-- /.box-body -->
+              
+            </div>
+            <!-- /.box -->
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+           <div class="box box-header">
+              <div class="box-header with-border">
+                <h3 class="box-title">Room Roster (<%= @checkins.count %>)</h3>
+              </div>
+              
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <tr>
+                    <th>Name</th>
+                    <th>E-mail</th>
+                    <th>Status</th>
+                    <th>
+                      <i class="ion ion-trash-b"></i>
+                    </th>
+                  </tr>
+                  <% @checkins.each do |checkin| %>
+                  <tr>
+                    <% if checkin.is_mentor %>
+                      <td><%= checkin.mentor.name %></td>
+                      <td><%= checkin.mentor.email %></td>
+                      <td>Mentor</td>
+                    <% else %>
+                      <td><%= checkin.student.name %></td>
+                      <td><%= checkin.student.email %></td>
+                      <td>Student</td>
+                    <% end %>
+                    <td>
+                      <%= link_to checkin, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <i class="ion ion-trash-b"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+              <!-- /.box-body -->
+              
+            </div>
+            <!-- /.box -->
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+           <div class="box box-header">
+              <div class="box-header with-border">
+                <h3 class="box-title">Manual Check-In</h3>
+              </div>
+              
+              <%= form_for @checkin do |f| %>
+                <% if @checkin.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@checkin.errors.count, 'error') %> prohibited this check-in from being saved:</h2>
+                    <ul>
+                      <% @checkin.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+                <div class="box-body">
+                  <div class="form-group">
+                    <label>Mentor?</label>
+                    <%= f.select(:is_mentor, options_for_select([true, false]), { include_blank: true } , { class: 'dropdown' , required: true }) %>
+                  </div>
+                  <div class="form-group">
+                    <label>Student</label>
+                    <br>
+                    <%= f.select(:student_id, get_students, { include_blank: true } , { class: 'dropdown' , required: false }) %>
+                  </div>
+                  <div class="form-group">
+                    <label>Mentor</label>
+                    <br>
+                    <%= f.select(:mentor_id, get_mentors, { include_blank: true } , { class: 'dropdown' , required: false }) %>
+                  </div>
+                  <%= f.number_field :room_id, :value => @room.id, :hidden => true %>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <%= f.submit 'Submit', class: 'btn btn-primary' %>
+                </div>
+              <% end %>
+              <!-- /.box-body -->
+              
+            </div>
+            <!-- /.box -->
+          </div>
+        </div>
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%= render 'layouts/footer' %>
+    <!-- ./wrapper -->
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $(document).ready(function () {
+        $.widget.bridge('uibutton', $.ui.button);
+        $('.datepicker').datepicker({format: 'yyyy/mm/dd'});
+        $('.dropdown').select2( {
+          theme: "bootstrap"
+        });
+      });
+    </script>
+  </div>
+</body>

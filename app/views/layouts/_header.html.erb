@@ -3,10 +3,10 @@
   <a href="<%= root_url %>" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini">
-      <b>f</b>inv</span>
+      <b>A</b>H</span>
     <!-- logo for regular state and mobile devices -->
     <span class="logo-lg">
-      <b>ANova Checkout System</b>
+      <b>ANova Hacks</b>
     </span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
@@ -39,7 +39,7 @@
       </div>
     </div>
     <!-- sidebar menu: : style can be found in sidebar.less -->
-    <ul class="sidebar-menu">
+    <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li>
         <a href="<%= root_url %>">
@@ -54,22 +54,56 @@
         </a>
       </li>
       <li>
-        <a href="<%= past_orders_path %>">
+        <a href="<%= orders_path %>">
           <i class="fa fa-history"></i>
-          <span>Past Orders</span>
+          <span>Orders</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="<%= scan_orders_path %>">
+          <i class="fa fa-laptop"></i>
+          <span>Checkout Laptop</span>
         </a>
       </li>
       <li>
-        <a href=" <%= new_item_path %>">
-          <i class="fa fa-plus"></i>
-          <span>Add Item</span>
+        <a href="<%= rooms_path %>">
+          <i class="fa fa-map-marker "></i>
+          <span>Check In</span>
         </a>
       </li>
-      <li>
-        <a href="<%= new_member_path %>">
-          <i class="fa fa-user-plus"></i>
-          <span>Add Member</span>
-        </a>
+      <li class="treeview">
+        <a href="#"><i class="fa fa-plus"></i> <span>Add</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href=" <%= new_item_path %>">
+              <i class="fa fa-search-plus"></i>
+              <span>Add Item</span>
+            </a>
+          </li>
+          <li>
+            <a href="<%= new_student_path %>">
+              <i class="fa fa-user-plus"></i>
+              <span>Add Student</span>
+            </a>
+          </li>
+          <li>
+            <a href="<%= new_mentor_path %>">
+              <i class="fa fa-user-plus"></i>
+              <span>Add Mentor</span>
+            </a>
+          </li>
+          <li>
+            <a href="<%= new_room_path %>">
+              <i class="fa fa-calendar-plus-o"></i>
+              <span>Add Room</span>
+            </a>
+          </li>
+        </ul>
       </li>
     </ul>
   </section>

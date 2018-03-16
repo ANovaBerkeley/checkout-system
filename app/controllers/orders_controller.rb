@@ -6,10 +6,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-    @members = Member.all
-    @items = Item.all
     @active = Order.active?
-    @expired = Order.expired?
   end
 
   def old
@@ -47,32 +44,41 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @member = Member.all
+    @student = Student.all
   end
 
-  def new_qr_item
-    render :new_qr_item
+  def scan
+    render :scan
   end
 
-  def new_qr_member
-    puts 'hello'
-    puts Qrio::Qr.load(params[:file].path).qr.text
-    @item = 8
-    render :new_qr_member
+  def scan_student
+    # TODO: figure out why page cuts off when navigating from sidebar
+    item = Item.find_by_upc(params[:upc][0...-1])
+    if item.nil?
+      redirect_to :back
+    else
+      redirect_to item_path(:id => item.id)
+    end
   end
 
-  def create_qr_order
-    puts 'hhello'
-    puts Qrio::Qr.load(params[:file].path).qr.text
-    puts params[:item_id]
+  def create_barcode_order
+    student_upc = params[:upc]
+    item_id = params[:item_id]
+    student = Student.find_by_upc(params[:upc][0...-1])
+
+    if student.nil?
+      redirect_to :back
+    end
+
+    # TODO: figure out why notices and alerts aren't working
 
     params[:order] = Hash.new
-    params[:order][:item_id] = params[:item_id]
+    params[:order][:item_id] = item_id
     params[:order][:quantity] = 1
-    params[:order][:member_id] = 26
-    params[:order][:expire_at] = DateTime.new(2018,3,21)
+    params[:order][:student_id] = student.id
+    params[:order][:expire_at] = DateTime.new(2018,3,17)
     
-    if Item.find_by_id(params[:item_id]).remaining_quantity >= params[:order][:quantity].to_i
+    if Item.find_by_id(item_id).remaining_quantity >= params[:order][:quantity].to_i
       params[:order][:status] = true
       @order = Order.new(order_params)
       if @order.save
@@ -85,11 +91,11 @@ class OrdersController < ApplicationController
         rescue Exception => e
         end
       else
-        render :new
+        render :scan
       end
     else
       flash[:alert] = 'The quantity you entered is not currently available'
-      redirect_to :root
+      redirect_to :scan
     end
   end
 
@@ -115,8 +121,13 @@ class OrdersController < ApplicationController
     end
   end
 
-  def get_members 
-    Member.all.map do |member| [member_id, member] 
+  def get_students 
+    Student.all.map do |student| [student_id, student] 
+    end
+  end
+
+  def get_mentors
+    Mentor.all.map do |mentor| [mentor_id, mentor] 
     end
   end
 
@@ -140,6 +151,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:quantity, :expire_at, :status, :item_id, :member_id)
+      params.require(:order).permit(:quantity, :expire_at, :status, :item_id, :student_id)
     end
 end

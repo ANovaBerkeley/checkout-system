@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
+  resources :checkins
+  resources :rooms do
+    collection { post :import }
+  end
+  resources :mentors do
+    collection { post :import }
+    collection { post :delete_all }
+  end
   devise_for :users
-  resources :orders
-  resources :members do
+  resources :orders do
+    collection { get :scan }
+    collection { post :scan_student }
+  end
+  resources :students do
     collection { post :import }
     collection { post :delete_all }
   end
@@ -10,13 +21,12 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-  root 'orders#index'
+  root 'students#home'
   get 'renew/:id' => 'orders#renew'
   get 'return/:id' => 'orders#disable'
   get 'past_orders' => 'orders#old'
 
-  get 'new_qr' => 'orders#new_qr_item'
-  post 'new_qr_member' => 'orders#new_qr_member'
-  post 'qr_order' => 'orders#create_qr_order'
+  post 'barcode_order' => 'orders#create_barcode_order'
+  post 'barcode_checkin' => 'checkins#create_barcode_checkin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

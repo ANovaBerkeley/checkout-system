@@ -1,9 +1,10 @@
 class Item < ApplicationRecord
   has_many :orders
-  has_many :members, through: :orders
+  has_many :students, through: :orders
 
   validates :name, presence: true
   validates :category, presence: true
+  validates :upc, presence: true
 
   require 'csv'
 
