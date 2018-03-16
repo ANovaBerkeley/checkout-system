@@ -63,7 +63,7 @@
                       <td>
                         <%= order.student.name %>
                       </td>
-                      <td><%= order.created_at.strftime("%d/%m/%Y, %H:%M") %></td>
+                      <td><%= order.created_at.strftime("%m/%d/%Y, %H:%M") %></td>
                       <td>
                         <%= link_to "", { :controller => :orders, :action => :disable, :id => order.id }, { class: "ion ion-log-in"} %>
                       </td>

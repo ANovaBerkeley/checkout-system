@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :category, presence: true
   validates :upc, presence: true
+  # if importing a csv, also include quantity
 
   require 'csv'
 
