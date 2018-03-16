@@ -83,14 +83,16 @@ class OrdersController < ApplicationController
     params[:order][:quantity] = 1
     params[:order][:student_id] = student.id
     params[:order][:expire_at] = DateTime.new(2018,3,17)
-    
+
     params[:order][:status] = true
     @order = Order.new(order_params)
     if @order.save
       @current_user = current_user
       @borrowed_item = Item.find_by_id(params[:order][:item_id])
       @borrowed_item.decrement!(:remaining_quantity, params[:order][:quantity].to_i)
-      redirect_to orders_path, notice: 'Order was successfully created.'
+      flash[:notice] = 'Order was successfully created.'
+      flash.keep(:notice)
+      redirect_to orders_path
       begin
         OrderMailer.delay.create_order(@order, @current_user).deliver
       rescue Exception => e
@@ -123,13 +125,13 @@ class OrdersController < ApplicationController
     end
   end
 
-  def get_students 
-    Student.all.map do |student| [student_id, student] 
+  def get_students
+    Student.all.map do |student| [student_id, student]
     end
   end
 
   def get_mentors
-    Mentor.all.map do |mentor| [mentor_id, mentor] 
+    Mentor.all.map do |mentor| [mentor_id, mentor]
     end
   end
 

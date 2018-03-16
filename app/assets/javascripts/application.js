@@ -15,8 +15,39 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require select2
+//= require toastr
 //= require turbolinks
 //= require quagga
+
+// $(document).ajaxComplete(function(event, request) {
+//     var msg = request.getResponseHeader('X-Message');
+//     var type = request.getResponseHeader('X-Message-Type');
+//     toastr.options = {
+//       "closeButton": false,
+//       "debug": true,
+//       "newestOnTop": false,
+//       "progressBar": false,
+//       "positionClass": "toast-top-right",
+//       "preventDuplicates": false,
+//       "onclick": null,
+//       "showDuration": "300",
+//       "hideDuration": "500",
+//       "timeOut": "1500",
+//       "extendedTimeOut": "500",
+//       "showEasing": "swing",
+//       "hideEasing": "linear",
+//       "showMethod": "fadeIn",
+//       "hideMethod": "fadeOut"
+//     };
+//     console.log("ajaxComplete")
+//     console.log(msg);
+//     console.log(type);
+//     if (msg && type) {
+//       type = type.to_s.gsub('alert', 'error').gsub('notice', 'success');
+//       console.log("toasterrrrr");
+//       toastr[`${type}`](`${msg}`);
+//     }
+// });
 
 function order_by_occurrence(arr) {
   var counts = {};
@@ -67,7 +98,7 @@ function load_quagga(){
               data: { upc: code, room_id:  id}
             });
           }
-          
+
         }
       });
     }
@@ -77,7 +108,7 @@ function load_quagga(){
         name : "Live",
         type : "LiveStream",
         numOfWorkers: navigator.hardwareConcurrency,
-        target: document.querySelector('#barcode-scanner')  
+        target: document.querySelector('#barcode-scanner')
       },
       decoder: {
           // readers : ['ean_reader','ean_8_reader','code_39_reader','code_39_vin_reader','codabar_reader','upc_reader','upc_e_reader']
