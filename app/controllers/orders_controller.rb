@@ -55,6 +55,7 @@ class OrdersController < ApplicationController
     # TODO: figure out why page cuts off when navigating from sidebar
     item = Item.find_by_upc(params[:upc][0...-1])
     if item.nil?
+      flash[:alert] = 'Unsuccessful scan.'
       redirect_to :back
     elsif item.remaining_quantity <= 0
       flash[:alert] = 'The quantity you entered is not currently available'
@@ -70,6 +71,7 @@ class OrdersController < ApplicationController
     student = Student.find_by_upc(params[:upc][0...-1])
 
     if student.nil?
+      flash[:alert] = 'Unsuccessful Scan. Please proceed manually.'
       redirect_to new_order_path(item: item_id)
       return
     end
@@ -94,6 +96,7 @@ class OrdersController < ApplicationController
       rescue Exception => e
       end
     else
+      flash[:alert] = 'Unsuccessful Scan. Please proceed manually.'
       redirect_to new_order_path(item: item_id)
     end
   end
