@@ -35,12 +35,24 @@ class CheckinsController < ApplicationController
         redirect_to :back
         return
       else
-        params[:checkin][:mentor_id] = mentor.id
-        params[:checkin][:is_mentor] = true
+        if Checkin.where(:room_id => room.id, :mentor_id => mentor.id).length > 0
+          flash[:alert] = 'Mentor already scanned into this room.'
+          redirect_to :back
+          return
+        else
+          params[:checkin][:mentor_id] = mentor.id
+          params[:checkin][:is_mentor] = true
+        end
       end
     else
-      params[:checkin][:student_id] = student.id
-      params[:checkin][:is_mentor] = false
+      if Checkin.where(:room_id => room.id, :student_id => student.id).length > 0
+        flash[:alert] = 'Student already scanned into this room.'
+        redirect_to :back
+        return
+      else
+        params[:checkin][:student_id] = student.id
+        params[:checkin][:is_mentor] = false
+      end
     end
 
     @checkin = Checkin.new(checkin_params)
