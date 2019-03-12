@@ -97,11 +97,14 @@
             names.push(name);
         }
       $("#jo").click(function() {
-        var randomNum = Math.floor((Math.random() * Math.floor(rows.length-1)));
-        var winner = names[randomNum]
-        console.log(randomNum)
-        console.log(winner)
-        $("#winner").text(winner + " wins!")
+        if (names.length == 0) {
+          $("#winner").text("No students checked in yet")
+        } else {
+          var winner = names[Math.floor(Math.random() * names.length)];
+          console.log(names)
+          console.log(winner)
+          $("#winner").text(winner + " wins!")
+        }
       })
     });
   </script>
