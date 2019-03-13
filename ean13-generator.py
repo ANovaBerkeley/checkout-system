@@ -10,7 +10,7 @@ import csv
 def barcode_students():
     numbers = []
     numbers.append(978020)
-    numbers.append(12)
+    numbers.append(11)
     for _ in range(4):
         numbers.append(randrange(10))
     return numbers
