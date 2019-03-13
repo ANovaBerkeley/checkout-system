@@ -62,7 +62,7 @@
             <div class="box">
                 <div class="box-footer">
                     <span>
-                        <input style="float: left" id="jo" type="submit" name="commit" value="Generate Winner" class="btn btn-primary" data-disable-with="Submit" />
+                        <input style="float: left" id="jo" type="submit" name="commit" value="Generate Winner" class="btn btn-primary" data-disable-with="Submit"/>
                         <div style="float: right; margin-right: 25px; margin-top: 3px; font-size: 20px" id="winner"></div>
                     </span>
                 </div>
@@ -97,11 +97,12 @@
             names.push(name);
         }
       $("#jo").click(function() {
-        if (names.length == 0) {
+        var checkin_names = <%= raw @checkin_names %>;
+        if (checkin_names.length == 0) {
           $("#winner").text("No students checked in yet")
         } else {
-          var winner = names[Math.floor(Math.random() * names.length)];
-          console.log(names)
+          var winner = checkin_names[Math.floor(Math.random() * checkin_names.length)];
+          console.log(checkin_names)
           console.log(winner)
           $("#winner").text(winner + " wins!")
         }

@@ -5,6 +5,10 @@ class CheckinsController < ApplicationController
   # GET /checkins.json
   def index
     @checkins = Checkin.students
+    @checkin_names = []
+    @checkins.each do |checkin|
+      @checkin_names << checkin.student.name
+    end
   end
   # GET /checkins/1
   # GET /checkins/1.json
